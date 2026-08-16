@@ -37,13 +37,14 @@
     font-weight:900;
     text-transform:uppercase;
     letter-spacing:0.01em;
-    line-height:0.98;
+    line-height:1.12;
   }
   html[dir="rtl"] .display{
     font-family:'Cairo','Tajawal',sans-serif;
     font-weight:900;
     letter-spacing:0;
     text-transform:none;
+    line-height:1.4;
   }
   html[dir="rtl"] body{ font-family:'Tajawal','Cairo',sans-serif; }
   html[dir="rtl"] .mono{ font-family:'Tajawal','Cairo',sans-serif; }
@@ -180,6 +181,7 @@
   .solution-block{ position:relative; display:inline-block; }
   .solution h2{ font-size:clamp(32px,6vw,64px); margin:0; max-width:820px; }
   .solution .redmark{ background:var(--red); color:var(--white); padding:0 6px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+  html[dir="rtl"] .solution .redmark{ padding:4px 8px; }
 
   /* PRODUCT */
   .product h2{ font-size:clamp(28px,4.6vw,46px); max-width:760px; margin:0 0 16px; }
@@ -201,6 +203,8 @@
   .plans{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-on-white); border:1px solid var(--line-on-white); }
   @media (max-width:920px){ .plans{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px){ .plans{ grid-template-columns:1fr; } }
+  .plans-2{ grid-template-columns:repeat(2,1fr); max-width:820px; }
+  @media (max-width:560px){ .plans-2{ grid-template-columns:1fr; } }
   .plan{ background:var(--white); padding:30px 24px; display:flex; flex-direction:column; position:relative; }
   .plan.featured{ background:var(--black); color:var(--white); }
   .plan .badge{ position:absolute; top:0; right:0; background:var(--red); color:var(--white); font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:5px 10px; }
@@ -214,6 +218,32 @@
   .plan li{ font-size:12.5px; padding-inline-start:14px; position:relative; opacity:0.85; line-height:1.5; }
   .plan li::before{ content:"+"; position:absolute; inset-inline-start:0; top:0; color:var(--red); font-weight:700; }
   .plan .btn{ width:100%; justify-content:center; }
+
+  /* RESERVE */
+  .reserve{ position:relative; }
+  .reserve-box{
+    border:1px solid var(--black); display:grid; grid-template-columns:1.3fr 1fr;
+  }
+  @media (max-width:820px){ .reserve-box{ grid-template-columns:1fr; } }
+  .reserve-main{ padding:44px 40px; border-right:1px solid var(--black); }
+  html[dir="rtl"] .reserve-main{ border-right:none; border-left:1px solid var(--black); }
+  @media (max-width:820px){ .reserve-main{ border-right:none; border-bottom:1px solid var(--black); } html[dir="rtl"] .reserve-main{ border-left:none; } }
+  @media (max-width:640px){ .reserve-main{ padding:32px 24px; } }
+  .reserve h2{ font-size:clamp(26px,4.2vw,42px); margin:0 0 16px; }
+  .reserve-main p.body-text{ font-size:14.5px; line-height:1.8; opacity:0.72; max-width:520px; margin:0 0 28px; }
+  .reserve-points{ list-style:none; margin:0 0 30px; padding:0; display:flex; flex-direction:column; gap:11px; }
+  .reserve-points li{ font-size:13.5px; padding-inline-start:16px; position:relative; opacity:0.85; }
+  .reserve-points li::before{ content:"+"; position:absolute; inset-inline-start:0; top:0; color:var(--red); font-weight:700; }
+  .reserve-side{ padding:44px 40px; display:flex; flex-direction:column; justify-content:center; background:var(--black); color:var(--white); }
+  @media (max-width:640px){ .reserve-side{ padding:32px 24px; } }
+  .reserve-price{ font-family:'Doto','Space Mono',monospace; font-weight:900; font-variation-settings:"wght" 900; font-size:52px; line-height:1; margin-bottom:4px; }
+  html[dir="rtl"] .reserve-price{ font-family:'Space Mono',monospace; }
+  .reserve-price .per{ font-size:13px; opacity:0.6; font-weight:400; font-family:'Space Mono',monospace; }
+  .reserve-note{ font-size:12px; opacity:0.6; margin:0 0 26px; line-height:1.6; }
+  .reserve-progress-lbl{ display:flex; justify-content:space-between; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.65; margin-bottom:8px; }
+  .reserve-progress-track{ height:4px; background:rgba(255,255,255,0.16); margin-bottom:26px; }
+  .reserve-progress-fill{ height:100%; background:var(--red); width:0%; transition:width 1s ease; }
+  .reserve-side .btn{ width:100%; justify-content:center; margin-bottom:12px; }
 
   /* HONESTY */
   .honesty h2{ font-size:clamp(26px,4.4vw,44px); max-width:760px; margin:0 0 20px; }
@@ -262,7 +292,7 @@
     </nav>
     <div class="nav-actions">
       <button class="lang-toggle" id="langToggle"><span class="dot small static"></span><span id="langToggleLabel">AR</span></button>
-      <button class="btn btn-solid" data-open-modal data-key="nav.cta"></button>
+      <a class="btn btn-solid" href="#reserve" data-key="nav.cta"></a>
     </div>
   </div>
 </header>
@@ -276,7 +306,7 @@
         <h1 class="display" id="heroTitle"></h1>
         <p class="sub" data-key="hero.sub"></p>
         <div class="hero-actions">
-          <button class="btn btn-solid" data-open-modal data-key="hero.cta"></button>
+          <a class="btn btn-solid" href="#reserve" data-key="hero.cta"></a>
         </div>
         <p class="note" data-key="hero.note"></p>
       </div>
@@ -302,7 +332,7 @@
 
     <div class="stats-strip">
       <div class="wrap" style="display:contents;">
-        <div class="stat"><div class="num">0–200+</div><div class="lbl" data-key="stats.s1"></div></div>
+        <div class="stat"><div class="num">400+</div><div class="lbl" data-key="stats.s1"></div></div>
         <div class="stat"><div class="num">3</div><div class="lbl" data-key="stats.s2"></div></div>
         <div class="stat"><div class="num">EGP</div><div class="lbl" data-key="stats.s3"></div></div>
       </div>
@@ -396,58 +426,31 @@
       <h2 class="display" data-key="pricing.headline"></h2>
       <p class="sub-text" data-key="pricing.sub"></p>
 
-      <div class="plans">
-        <div class="plan">
-          <div class="pname" data-key="plan.free.name"></div>
-          <div class="price">0 <span class="en-num">EGP</span></div>
-          <div class="tagline" data-key="plan.free.tagline"></div>
-          <ul>
-            <li data-key="plan.free.f1"></li>
-            <li data-key="plan.free.f2"></li>
-            <li data-key="plan.free.f3"></li>
-            <li data-key="plan.free.f4"></li>
-          </ul>
-          <button class="btn" data-open-modal data-key="plan.free.cta"></button>
-        </div>
-
-        <div class="plan">
-          <div class="pname" data-key="plan.starter.name"></div>
-          <div class="price">299 <span class="en-num">EGP</span><span class="per">/mo</span></div>
-          <div class="tagline" data-key="plan.starter.tagline"></div>
-          <ul>
-            <li data-key="plan.starter.f1"></li>
-            <li data-key="plan.starter.f2"></li>
-            <li data-key="plan.starter.f3"></li>
-            <li data-key="plan.starter.f4"></li>
-          </ul>
-          <button class="btn" data-open-modal data-key="plan.starter.cta"></button>
-        </div>
-
+      <div class="plans plans-2">
         <div class="plan featured">
-          <div class="badge" data-key="plan.pro.badge"></div>
-          <div class="pname" data-key="plan.pro.name"></div>
-          <div class="price">499 <span class="en-num">EGP</span><span class="per">/mo</span></div>
-          <div class="tagline" data-key="plan.pro.tagline"></div>
+          <div class="pname" data-key="plan.main.name"></div>
+          <div class="price">599 <span class="en-num">EGP</span><span class="per">/mo</span></div>
+          <div class="tagline" data-key="plan.main.tagline"></div>
           <ul>
-            <li data-key="plan.pro.f1"></li>
-            <li data-key="plan.pro.f2"></li>
-            <li data-key="plan.pro.f3"></li>
-            <li data-key="plan.pro.f4"></li>
+            <li data-key="plan.main.f1"></li>
+            <li data-key="plan.main.f2"></li>
+            <li data-key="plan.main.f3"></li>
+            <li data-key="plan.main.f4"></li>
           </ul>
-          <button class="btn btn-outline-white" data-open-modal data-key="plan.pro.cta"></button>
+          <a class="btn btn-outline-white" href="#reserve" data-key="plan.main.cta"></a>
         </div>
 
         <div class="plan">
-          <div class="pname" data-key="plan.team.name"></div>
-          <div class="price">999 <span class="en-num">EGP</span><span class="per">/mo</span></div>
-          <div class="tagline" data-key="plan.team.tagline"></div>
+          <div class="pname" data-key="plan.enterprise.name"></div>
+          <div class="price" data-key="plan.enterprise.price"></div>
+          <div class="tagline" data-key="plan.enterprise.tagline"></div>
           <ul>
-            <li data-key="plan.team.f1"></li>
-            <li data-key="plan.team.f2"></li>
-            <li data-key="plan.team.f3"></li>
-            <li data-key="plan.team.f4"></li>
+            <li data-key="plan.enterprise.f1"></li>
+            <li data-key="plan.enterprise.f2"></li>
+            <li data-key="plan.enterprise.f3"></li>
+            <li data-key="plan.enterprise.f4"></li>
           </ul>
-          <button class="btn" data-open-modal data-key="plan.team.cta"></button>
+          <button class="btn" id="enterpriseBtn" data-key="plan.enterprise.cta"></button>
         </div>
       </div>
     </div>
@@ -461,11 +464,38 @@
     </div>
   </section>
 
+  <section class="reserve on-white anchor-offset" id="reserve">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot small"></span><span data-key="reserve.eyebrow"></span></p>
+      <div class="reserve-box">
+        <div class="reserve-main">
+          <h2 class="display" data-key="reserve.title"></h2>
+          <p class="body-text" data-key="reserve.body"></p>
+          <ul class="reserve-points">
+            <li data-key="reserve.p1"></li>
+            <li data-key="reserve.p2"></li>
+            <li data-key="reserve.p3"></li>
+          </ul>
+        </div>
+        <div class="reserve-side">
+          <div class="reserve-price">99 <span class="en-num">EGP</span></div>
+          <div class="reserve-note" data-key="reserve.note"></div>
+          <div class="reserve-progress-lbl">
+            <span data-key="reserve.spotsleft"></span>
+            <span id="reserveSpotsCount"></span>
+          </div>
+          <div class="reserve-progress-track"><div class="reserve-progress-fill" id="reserveProgressFill"></div></div>
+          <button class="btn btn-outline-white" id="reserveBtn" data-key="reserve.cta"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="finalcta on-white">
     <div class="wrap">
       <h2 class="display" data-key="finalcta.title"></h2>
       <p data-key="finalcta.sub"></p>
-      <button class="btn btn-solid" data-open-modal data-key="finalcta.button"></button>
+      <a class="btn btn-solid" href="#reserve" data-key="finalcta.button"></a>
     </div>
   </section>
 
@@ -488,13 +518,38 @@
 <script>
 const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdJXZqwfJOg6l4epLtpjJDd_RZk_UFiGGery0Fzs_PRsQZPmA/viewform?embedded=true";
 
+/* RESERVE A SPOT CONFIG
+   TOTAL_SPOTS: hard cap of 350
+   SPOTS_RESERVED: fallback number used only if the live sheet count can't be fetched (offline, URL not set yet, etc).
+   SHEET_CSV_URL: your Google Sheet's "published to web as CSV" link. The progress bar reads the row
+   count from this sheet live, so it updates automatically as people submit the reservation form.
+
+   HOW TO GET SHEET_CSV_URL:
+   1. Open your Google Form -> Responses tab -> click the green Sheets icon to create/open the linked spreadsheet
+      (skip this step if you already linked one).
+   2. In that Sheet: File -> Share -> Publish to web.
+   3. Under "Link", choose the specific response sheet/tab (not "Entire document"), and choose CSV as the format.
+   4. Click Publish, copy the URL it gives you, and paste it below as SHEET_CSV_URL.
+   Note: this makes the response COUNT public (visible to anyone who has this URL), not the actual answers/names —
+   still, don't publish a sheet that has personal data in other tabs.
+
+   RESERVE_PAYMENT_URL: your actual payment link here (Instapay / Fawry / Paymob / Kashier etc).
+   Until you add a real payment link, the button falls back to opening the sign-up form.
+   BOOKING_URL: your Calendly (or similar) link here for the Enterprise "Book a call" button.
+   Until you add one, it falls back to opening the same sign-up form so leads aren't lost. */
+const TOTAL_SPOTS = 400;
+const SPOTS_RESERVED = 0;
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1AoLholizTpuR-QGaNOWQmfwa0hEuYTWEJrM_xDB-c0c/gviz/tq?tqx=out:csv&gid=1085262494";
+const RESERVE_PAYMENT_URL = "";
+const BOOKING_URL = "";
+
 const content = {
   en: {
-    "nav.how":"How it works", "nav.features":"Features", "nav.pricing":"Pricing", "nav.roadmap":"Roadmap", "nav.cta":"Join waitlist",
+    "nav.how":"How it works", "nav.features":"Features", "nav.pricing":"Pricing", "nav.reserve":"Reserve a spot", "nav.roadmap":"Roadmap", "nav.cta":"Reserve your spot",
     "hero.eyebrow":"Coming soon for online sellers in Egypt",
     "hero.sub":"Wasla turns your customers' WhatsApp messages into organized orders, automatically — name, product, color, address, and status, all in one place instead of digging through the chat. Stop losing orders in WhatsApp. Keep everything organized in Wasla.",
-    "hero.cta":"Join the waitlist",
-    "hero.note":"No payment required right now — the first 50 sellers get 3 months free on the Starter plan.",
+    "hero.cta":"Reserve your spot",
+    "hero.note":"Only 400 founding spots — reserve yours for 99 EGP and keep 599 EGP/month for a full year.",
     "chat.msg":"I want 2 AirPods in white, address is Mansoura. My name's Kareem, you already have my number 🙏",
     "chat.neworder":"New order",
     "chat.lbl.product":"Product","chat.val.product":"AirPods — White",
@@ -503,7 +558,7 @@ const content = {
     "chat.lbl.address":"Address","chat.val.address":"Mansoura",
     "chat.lbl.status":"Status","chat.val.status":"Ready to ship",
     "chat.caption":"Wasla reads the message and builds the order — no manual typing.",
-    "stats.s1":"Seller target, first 6 weeks",
+    "stats.s1":"Founding seller spots",
     "stats.s2":"Problems we solve from day one",
     "stats.s3":"Pricing in Egyptian pounds",
     "problem.eyebrow":"The real problem",
@@ -521,31 +576,37 @@ const content = {
     "product.m3.title":"Inventory","product.m3.i1":"Stock per product","product.m3.i2":"Low-stock alerts","product.m3.i3":"Auto-updates with every order",
     "product.m4.title":"Customers","product.m4.i1":"Order history","product.m4.i2":"Total spent","product.m4.i3":"Repeat customers",
     "pricing.eyebrow":"Pricing",
-    "pricing.headline":"Start free. Grow your plan with your business.",
-    "pricing.sub":"No long contracts. Cancel or change your plan anytime.",
-    "plan.free.name":"Free","plan.free.tagline":"Up to 20 orders / month",
-    "plan.free.f1":"Up to 20 orders monthly","plan.free.f2":"Basic dashboard","plan.free.f3":"Manual order entry","plan.free.f4":"1 user","plan.free.cta":"Start free",
-    "plan.starter.name":"Starter","plan.starter.tagline":"For sellers getting organized",
-    "plan.starter.f1":"Unlimited orders","plan.starter.f2":"Stock alerts","plan.starter.f3":"Customer history","plan.starter.f4":"1 user","plan.starter.cta":"Try Starter",
-    "plan.pro.badge":"Most popular","plan.pro.name":"Pro","plan.pro.tagline":"For active stores",
-    "plan.pro.f1":"Everything in Starter","plan.pro.f2":"AI order extraction from WhatsApp","plan.pro.f3":"Sales reports","plan.pro.f4":"Up to 3 users","plan.pro.cta":"Try Pro",
-    "plan.team.name":"Team","plan.team.tagline":"For teams & offices",
-    "plan.team.f1":"Unlimited users","plan.team.f2":"Shipping integrations","plan.team.f3":"Priority support","plan.team.f4":"Everything in Pro","plan.team.cta":"Contact us",
+    "pricing.headline":"One plan for most sellers. One for scale.",
+    "pricing.sub":"Straightforward pricing based on how many orders you actually process.",
+    "plan.main.name":"Wasla","plan.main.tagline":"For sellers under 1,000 orders / month",
+    "plan.main.f1":"AI order extraction from WhatsApp","plan.main.f2":"Unlimited orders up to 1,000/mo","plan.main.f3":"Inventory & customer history","plan.main.f4":"Sales reports & dashboard","plan.main.cta":"Reserve your spot",
+    "plan.enterprise.name":"Enterprise","plan.enterprise.tagline":"For stores doing 1,000+ orders / month",
+    "plan.enterprise.price":"Book a call",
+    "plan.enterprise.f1":"Everything in Wasla","plan.enterprise.f2":"Custom order volume & pricing","plan.enterprise.f3":"Multi-user & team accounts","plan.enterprise.f4":"Priority support & onboarding","plan.enterprise.cta":"Book a call",
+    "reserve.eyebrow":"400 founding spots — reservation now open",
+    "reserve.title":"Reserve your spot for 99 EGP.",
+    "reserve.body":"We're only opening 400 founding spots. Reserving yours keeps the 599 EGP/month price fixed for a full year, before pricing goes up for everyone else.",
+    "reserve.p1":"Your 99 EGP is credited toward your first month",
+    "reserve.p2":"Price stays 599 EGP/month for a full year, even if it rises later",
+    "reserve.p3":"First access when Wasla goes live",
+    "reserve.note":"One-time reservation fee. Limited to 400 sellers.",
+    "reserve.spotsleft":"Spots reserved",
+    "reserve.cta":"Reserve my spot",
     "honesty.tag":"Research & design phase — before the MVP",
     "honesty.title":"Being honest: Wasla is still being built.",
     "honesty.body":"We're gathering feedback from sellers before we build anything, to make sure Wasla is genuinely faster and easier than Excel and WhatsApp. If you sign up now, you'll be one of the first to try it — and your feedback will shape what Wasla becomes.",
     "finalcta.title":"Let's build it together.",
-    "finalcta.sub":"Sign up now, and you'll be among the first to try Wasla.",
-    "finalcta.button":"Join the waitlist",
+    "finalcta.sub":"Reserve your spot now, and you'll be among the first to try Wasla.",
+    "finalcta.button":"Reserve your spot",
     "footer.text":"© 2026 Wasla — made with care for Egypt's merchants.",
-    "modal.title":"Join the waitlist"
+    "modal.title":"Reserve your spot"
   },
   ar: {
-    "nav.how":"إزاي بيشتغل", "nav.features":"المميزات", "nav.pricing":"الأسعار", "nav.roadmap":"خطة الإطلاق", "nav.cta":"احجز مكانك",
+    "nav.how":"إزاي بيشتغل", "nav.features":"المميزات", "nav.pricing":"الأسعار", "nav.reserve":"احجز مكانك", "nav.roadmap":"خطة الإطلاق", "nav.cta":"احجز مكانك",
     "hero.eyebrow":"قريبًا لأصحاب المتاجر الأونلاين في مصر",
     "hero.sub":"وصلة بتحول رسايل العملاء على واتساب لأوردرات منظمة أوتوماتيك: الاسم، المنتج، اللون، العنوان، والحالة، كله في مكان واحد بدل ما تدوّر عليه في الشات. بدل ما تضيع الطلبات بين رسائل واتساب، خلي كل طلباتك مرتبة في وصلة.",
-    "hero.cta":"احجز مكانك في القايمة",
-    "hero.note":"مفيش أي مبلغ مطلوب دلوقتي — أول ٥٠ بائع هياخدوا ثلاث شهور مجانًا على باقة Starter.",
+    "hero.cta":"احجز مكانك",
+    "hero.note":"٤٠٠ مكان تأسيسي بس — احجز مكانك بـ ٩٩ جنيه وخلي السعر ٥٩٩ جنيه شهريًا طول سنة كاملة.",
     "chat.msg":"عايز ٢ AirPods واللون أبيض والعنوان المنصورة، اسمي كريم ورقمي معاك من قبل 🙏",
     "chat.neworder":"أوردر جديد",
     "chat.lbl.product":"المنتج","chat.val.product":"AirPods — أبيض",
@@ -554,7 +615,7 @@ const content = {
     "chat.lbl.address":"العنوان","chat.val.address":"المنصورة",
     "chat.lbl.status":"الحالة","chat.val.status":"جاهز للشحن",
     "chat.caption":"وصلة بتقرا الرسالة وتبني الأوردر — من غير ما تكتب حاجة يدوي.",
-    "stats.s1":"هدف أول ٦ أسابيع من البائعين",
+    "stats.s1":"مكان تأسيسي للبائعين",
     "stats.s2":"مشاكل بنحلها من أول يوم",
     "stats.s3":"الأسعار بالجنيه المصري",
     "problem.eyebrow":"المشكلة الحقيقية",
@@ -572,24 +633,30 @@ const content = {
     "product.m3.title":"المخزون","product.m3.i1":"كمية كل منتج","product.m3.i2":"تنبيه لو المخزون قرب يخلص","product.m3.i3":"تحديث تلقائي مع كل أوردر",
     "product.m4.title":"العملاء","product.m4.i1":"سجل الأوردرات السابقة","product.m4.i2":"إجمالي المصروف","product.m4.i3":"أكتر عملاء بيكرروا الشراء",
     "pricing.eyebrow":"الأسعار",
-    "pricing.headline":"ابدأ مجانًا، وكبّر باقتك مع بيزنسك.",
-    "pricing.sub":"مفيش عقود طويلة، تقدر تلغي أو تغيّر باقتك في أي وقت.",
-    "plan.free.name":"Free","plan.free.tagline":"لحد ٢٠ أوردر شهريًا",
-    "plan.free.f1":"حتى ٢٠ أوردر شهريًا","plan.free.f2":"الداشبورد الأساسي","plan.free.f3":"إدارة أوردرات يدوية","plan.free.f4":"مستخدم واحد","plan.free.cta":"ابدأ مجانًا",
-    "plan.starter.name":"Starter","plan.starter.tagline":"للبائعين اللي بيتنظموا",
-    "plan.starter.f1":"أوردرات غير محدودة","plan.starter.f2":"تنبيهات المخزون","plan.starter.f3":"سجل العملاء","plan.starter.f4":"مستخدم واحد","plan.starter.cta":"جرّب Starter",
-    "plan.pro.badge":"الأكتر طلبًا","plan.pro.name":"Pro","plan.pro.tagline":"لأصحاب المتاجر النشطة",
-    "plan.pro.f1":"كل حاجة في Starter","plan.pro.f2":"استخراج الأوردر من واتساب بالـ AI","plan.pro.f3":"تقارير مبيعات","plan.pro.f4":"حتى ٣ مستخدمين","plan.pro.cta":"جرّب Pro",
-    "plan.team.name":"Team","plan.team.tagline":"لفرق العمل والمكاتب",
-    "plan.team.f1":"مستخدمين غير محدودين","plan.team.f2":"تكامل مع شركات الشحن","plan.team.f3":"دعم أولوية","plan.team.f4":"كل حاجة في Pro","plan.team.cta":"تواصل معانا",
+    "pricing.headline":"باقة واحدة لمعظم البائعين، وباقة للنمو الكبير.",
+    "pricing.sub":"أسعار واضحة على حسب عدد الأوردرات اللي بتعالجها فعليًا.",
+    "plan.main.name":"وصلة","plan.main.tagline":"للبائعين اللي بيعملوا أقل من ١٠٠٠ أوردر شهريًا",
+    "plan.main.f1":"استخراج الأوردر من واتساب بالـ AI","plan.main.f2":"أوردرات غير محدودة لحد ١٠٠٠ شهريًا","plan.main.f3":"المخزون وسجل العملاء","plan.main.f4":"تقارير مبيعات وداشبورد","plan.main.cta":"احجز مكانك",
+    "plan.enterprise.name":"Enterprise","plan.enterprise.tagline":"لأصحاب المتاجر اللي بيعملوا ١٠٠٠+ أوردر شهريًا",
+    "plan.enterprise.price":"احجز مكالمة",
+    "plan.enterprise.f1":"كل حاجة في باقة وصلة","plan.enterprise.f2":"سعر وحجم أوردرات مخصص","plan.enterprise.f3":"حسابات متعددة للفريق","plan.enterprise.f4":"دعم أولوية وتهيئة مخصصة","plan.enterprise.cta":"احجز مكالمة",
+    "reserve.eyebrow":"٤٠٠ مكان تأسيسي فقط — الحجز متاح دلوقتي",
+    "reserve.title":"احجز مكانك بـ ٩٩ جنيه.",
+    "reserve.body":"هنفتح ٤٠٠ مكان بس لأول بائعين. لما تحجز مكانك، السعر بيفضل ٥٩٩ جنيه في الشهر لمدة سنة كاملة، قبل ما السعر يزيد لأي حد بعد كده.",
+    "reserve.p1":"الـ ٩٩ جنيه بتتخصم من أول شهر اشتراك",
+    "reserve.p2":"السعر هيفضل ٥٩٩ جنيه شهريًا لمدة سنة كاملة حتى لو زاد بعدين",
+    "reserve.p3":"أول ناس تجرب وصلة لما تطلق",
+    "reserve.note":"مصاريف حجز لمرة واحدة. العدد محدود بـ ٤٠٠ بائع.",
+    "reserve.spotsleft":"الأماكن المحجوزة",
+    "reserve.cta":"احجز مكاني",
     "honesty.tag":"مرحلة البحث والتصميم — قبل بناء الـ MVP",
     "honesty.title":"بنقول لك الصراحة: وصلة لسه بتتبني.",
     "honesty.body":"احنا دلوقتي بنجمع آراء البائعين قبل ما نبني حاجة، عشان نتأكد إن وصلة فعلًا أسرع وأسهل من الإكسل والواتساب. اللي هيسجل دلوقتي هيبقى من أول ناس تجرب المنتج، ورأيه هيشكّل شكل وصلة النهائي.",
     "finalcta.title":"يلا نبنيها مع بعض.",
-    "finalcta.sub":"سجّل دلوقتي، وهتكون من أول اللي بيجربوا وصلة قبل الكل.",
+    "finalcta.sub":"احجز مكانك دلوقتي، وهتكون من أول اللي بيجربوا وصلة قبل الكل.",
     "finalcta.button":"احجز مكانك",
     "footer.text":"© 2026 وصلة — صنع بحب لتجار مصر.",
-    "modal.title":"احجز مكانك في قائمة الانتظار"
+    "modal.title":"احجز مكانك"
   }
 };
 
@@ -630,6 +697,88 @@ document.getElementById('langToggle').addEventListener('click', () => {
 });
 
 applyLang('en');
+
+// Reserve a spot: progress bar + button
+function setReserveProgress(reservedCount){
+  const total = TOTAL_SPOTS;
+  const reserved = Math.max(0, Math.min(reservedCount, total));
+  const pct = (reserved / total) * 100;
+  const fill = document.getElementById('reserveProgressFill');
+  const count = document.getElementById('reserveSpotsCount');
+  if(fill) requestAnimationFrame(() => { fill.style.width = pct + '%'; });
+  if(count) count.textContent = reserved + ' / ' + total;
+}
+
+// Properly split CSV text into rows, ignoring line breaks that fall inside quoted fields.
+function splitCsvRows(text){
+  const rows = [];
+  let cur = '';
+  let inQuotes = false;
+  for(let i = 0; i < text.length; i++){
+    const ch = text[i];
+    if(ch === '"'){
+      if(inQuotes && text[i + 1] === '"'){ cur += '"'; i++; continue; }
+      inQuotes = !inQuotes;
+      cur += ch;
+    } else if((ch === '\n' || ch === '\r') && !inQuotes){
+      if(ch === '\r' && text[i + 1] === '\n') i++;
+      if(cur.trim().length > 0) rows.push(cur);
+      cur = '';
+    } else {
+      cur += ch;
+    }
+  }
+  if(cur.trim().length > 0) rows.push(cur);
+  return rows;
+}
+
+async function loadReservedCount(){
+  if(!SHEET_CSV_URL){
+    setReserveProgress(SPOTS_RESERVED);
+    return;
+  }
+  try{
+    const res = await fetch(SHEET_CSV_URL, { cache: 'no-store' });
+    if(!res.ok) throw new Error('Sheet fetch failed: ' + res.status);
+    const text = await res.text();
+    const rows = splitCsvRows(text);
+    const reserved = Math.max(rows.length - 1, 0); // minus header row
+    setReserveProgress(reserved);
+  } catch(err){
+    console.warn('Could not load live reservation count, using fallback:', err);
+    setReserveProgress(SPOTS_RESERVED);
+  }
+}
+
+(function(){
+  loadReservedCount();
+
+  const reserveBtn = document.getElementById('reserveBtn');
+  if(reserveBtn){
+    reserveBtn.addEventListener('click', () => {
+      if(RESERVE_PAYMENT_URL){
+        window.open(RESERVE_PAYMENT_URL, '_blank');
+      } else {
+        frame.src = FORM_URL;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  const enterpriseBtn = document.getElementById('enterpriseBtn');
+  if(enterpriseBtn){
+    enterpriseBtn.addEventListener('click', () => {
+      if(BOOKING_URL){
+        window.open(BOOKING_URL, '_blank');
+      } else {
+        frame.src = FORM_URL;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+})();
 
 // Modal
 const overlay = document.getElementById('modalOverlay');
