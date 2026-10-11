@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wasla | Order Managing App</title>
+<meta name="description" content="Wasla turns WhatsApp messages into organized orders with AI. 400 founding spots for Egyptian online sellers.">
+<meta name="theme-color" content="#ff1a1a">
 <link rel="icon" type="image/png" href="Web Head Logo 2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -273,10 +275,300 @@
   .modal-close:hover{ color:var(--red); }
   .modal-card iframe{ border:none; width:100%; flex:1; min-height:480px; }
 
+
+  /* ===== v3 ENHANCEMENTS ===== */
+  .progress-bar{ position:fixed; top:0; inset-inline-start:0; height:3px; width:0; background:var(--red); z-index:300; }
+  .hero{ position:relative; overflow:hidden; }
+  .hero::before{ content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(0,0,0,.2) 1.2px,transparent 1.5px); background-size:22px 22px;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 72%); mask-image:linear-gradient(180deg,#000 0%,transparent 72%); pointer-events:none; }
+  .hero > *{ position:relative; }
+  .pill{ display:inline-flex; align-items:center; gap:10px; border:1px solid var(--black); padding:11px 14px; font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; transition:background .15s,color .15s; }
+  .pill:hover{ background:var(--black); color:var(--white); }
+  .order-row{ transition:opacity .35s, transform .35s, background .7s; }
+  .order-row.pending{ opacity:0; transform:translateX(-10px); }
+  html[dir="rtl"] .order-row.pending{ transform:translateX(10px); }
+  .order-row.flash{ background:rgba(255,26,26,.14); }
+  .caret::after{ content:"\25AE"; color:var(--red); margin-inline-start:2px; animation:blink 1s steps(1) infinite; }
+  .ticker{ background:var(--red); color:#fff; overflow:hidden; white-space:nowrap; padding:13px 0; font-size:13px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; direction:ltr; }
+  .ticker-track{ display:inline-flex; animation:tick 30s linear infinite; }
+  .ticker-track span{ padding:0 22px; }
+  @keyframes tick{ to{ transform:translateX(-50%); } }
+  .rv{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; transition-delay:var(--d,0s); }
+  .rv.in{ opacity:1; transform:none; }
+  .card3:hover,.mod:hover{ background:var(--black); color:var(--white); }
+  .plan:not(.featured):hover{ background:#f4f4f4; }
+
+  /* ABOUT / JOURNEY */
+  .about{ padding-bottom:0; }
+  .about-intro{ display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:end; margin-bottom:64px; }
+  @media (max-width:820px){ .about-intro{ grid-template-columns:1fr; gap:24px; } }
+  .about-intro h2{ font-size:clamp(30px,5vw,58px); margin:0; }
+  .about-intro p.body{ font-size:15px; line-height:1.85; opacity:.78; margin:0; }
+  .about-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+  .about-tags span{ border:1px solid var(--line-on-black); padding:6px 12px; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; }
+  .journey{ height:calc(var(--n) * 80vh + 20vh); position:relative; }
+  .stage{ position:sticky; top:68px; height:calc(100vh - 68px); display:grid; grid-template-columns:minmax(130px,.8fr) 1.5fr; gap:clamp(20px,5vw,72px); align-items:center; border-top:1px solid var(--line-on-black); }
+  @media (max-width:700px){ .stage{ grid-template-columns:1fr; align-content:center; gap:28px; } .j-left{ display:flex; align-items:center; justify-content:space-between; } .j-rail{ flex-direction:row !important; margin:0 !important; } }
+  .j-num{ font-family:'Doto','Space Mono',monospace; font-weight:900; font-variation-settings:"wght" 900; font-size:clamp(88px,19vw,230px); line-height:1; }
+  .j-rail{ display:flex; flex-direction:column; gap:10px; margin-top:22px; }
+  .j-rail i{ display:block; width:10px; height:10px; border:1px solid #fff; transition:all .25s; }
+  .j-rail i.done{ background:#fff; }
+  .j-rail i.on{ background:var(--red); border-color:var(--red); transform:scale(1.5); }
+  .j-card{ transition:opacity .18s, transform .18s; }
+  .j-card.out{ opacity:0; transform:translateY(14px); }
+  .j-status{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line-on-black); padding:6px 12px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:22px; }
+  .j-card[data-k="done"] .dot{ background:#fff; animation:none; }
+  .j-card[data-k="next"] .dot{ background:transparent; border:1px solid #fff; animation:none; }
+  .j-card h3{ font-size:clamp(28px,4.6vw,54px); margin:0 0 18px; }
+  .j-card p{ font-size:15.5px; line-height:1.85; opacity:.75; max-width:520px; margin:0; }
+  .j-bar{ height:3px; background:rgba(255,255,255,.16); margin-top:40px; max-width:520px; }
+  .j-bar b{ display:block; height:100%; background:var(--red); width:0; }
+  .j-hint{ font-size:11.5px; opacity:.5; margin-top:14px; letter-spacing:.04em; }
+
+  /* SEAT MAP */
+  .seats h2{ font-size:clamp(34px,7vw,76px); margin:0 0 14px; }
+  .seats-sub{ font-size:14.5px; opacity:.65; max-width:560px; margin:0 0 36px; line-height:1.8; }
+  .seat-stats{ display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line-on-black); margin-bottom:28px; }
+  .seat-stats div{ padding:20px 10px; text-align:center; border-inline-end:1px solid var(--line-on-black); }
+  .seat-stats div:last-child{ border:none; }
+  .seat-stats b{ display:block; font-family:'Doto','Space Mono',monospace; font-weight:900; font-variation-settings:"wght" 900; font-size:clamp(28px,5vw,46px); }
+  .seat-stats span{ font-size:11px; opacity:.55; letter-spacing:.06em; text-transform:uppercase; }
+  .seat-map{ display:grid; grid-template-columns:repeat(20,1fr); gap:clamp(3px,.7vw,7px); margin-bottom:22px; direction:ltr; }
+  .seat{ aspect-ratio:1; border:1px solid rgba(255,255,255,.4); background:none; padding:0; cursor:pointer; position:relative; transition:transform .15s, background .15s; }
+  .seat:hover{ background:var(--white); transform:scale(1.5); z-index:2; }
+  .seat.res{ background:var(--red); border-color:var(--red); cursor:default; }
+  .seat.res:hover{ transform:none; background:var(--red); }
+  .seat.next{ border-color:var(--red); }
+  .seat::after{ content:attr(data-n); position:absolute; bottom:135%; left:50%; transform:translateX(-50%); background:#fff; color:#000; font-size:10px; padding:2px 6px; white-space:nowrap; opacity:0; pointer-events:none; }
+  .seat:hover::after{ opacity:1; }
+  .seat-map:not(.go) .seat{ opacity:0; }
+  .seat-map.go .seat{ animation:seatIn .45s calc(var(--i) * 4ms) both; }
+  .seat-map.go .seat.next{ animation:seatIn .45s calc(var(--i) * 4ms) both, blink 1.2s 2.2s steps(1) infinite; }
+  @keyframes seatIn{ from{ opacity:0; transform:scale(.3); } to{ opacity:1; transform:none; } }
+  .seat-legend{ display:flex; gap:22px; flex-wrap:wrap; font-size:11.5px; opacity:.75; margin-bottom:30px; }
+  .seat-legend span{ display:flex; align-items:center; gap:8px; }
+  .seat-legend i{ width:12px; height:12px; border:1px solid rgba(255,255,255,.5); display:inline-block; }
+  .seat-legend i.res{ background:var(--red); border-color:var(--red); }
+  .seat-legend i.next{ border-color:var(--red); }
+
+  /* FLOATING CTA */
+  .float-cta{ position:fixed; bottom:18px; inset-inline:0; margin:auto; width:max-content; max-width:calc(100% - 32px); z-index:90; display:flex; align-items:center; gap:12px;
+    background:var(--black); color:#fff; padding:12px 18px; font-size:12.5px; font-weight:700; letter-spacing:.04em; border:1px solid var(--red); transform:translateY(130px); transition:transform .35s; }
+  .float-cta.show{ transform:none; }
+  .float-cta b{ color:var(--red); }
+
+
+  /* ===== PROCESS ILLUSTRATION ===== */
+  .process{ background:#f5f5f5; }
+  .process h2{ font-size:clamp(28px,4.6vw,48px); max-width:780px; margin:0 0 16px; }
+  .process .sub-text{ font-size:14.5px; opacity:.65; max-width:580px; margin:0 0 40px; line-height:1.8; }
+  .p-steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-on-white); border:1px solid var(--line-on-white); margin-bottom:28px; direction:rtl; }
+  @media (max-width:700px){ .p-steps{ grid-template-columns:repeat(2,1fr); } }
+  .p-steps div{ background:#fff; padding:12px 14px; font-family:'Tajawal','Cairo',sans-serif; font-size:13px; font-weight:700; opacity:.4; transition:all .3s; display:flex; gap:8px; align-items:center; }
+  .p-steps div b{ color:var(--red); font-family:'Space Mono',monospace; }
+  .p-steps div.on{ opacity:1; background:var(--black); color:#fff; }
+  .p-steps div.done{ opacity:.85; }
+  .p-stage{ display:grid; grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr); align-items:center; direction:rtl; font-family:'Tajawal','Cairo',sans-serif; }
+  @media (max-width:820px){ .p-stage{ grid-template-columns:1fr; } }
+  .p-link{ text-align:center; color:var(--red); font-size:24px; }
+  @media (max-width:820px){ .p-link{ transform:rotate(-90deg); padding:14px 0; } }
+  .phone{ border:1px solid var(--black); background:#fff; }
+  .phone-head{ display:flex; align-items:center; gap:10px; padding:12px 16px; background:var(--black); color:#fff; font-weight:700; font-size:14px; }
+  .phone-head small{ display:block; font-weight:400; opacity:.6; font-size:11px; }
+  .avatar{ width:34px; height:34px; background:var(--red); flex:none; display:flex; align-items:center; justify-content:center; font-weight:900; }
+  .chat-area{ height:430px; padding:16px; display:flex; flex-direction:column; justify-content:flex-end; gap:10px; overflow:hidden;
+    -webkit-mask-image:linear-gradient(transparent,#000 14%); mask-image:linear-gradient(transparent,#000 14%); }
+  .msg{ max-width:84%; padding:10px 14px; font-size:14px; line-height:1.75; animation:msgIn .3s ease both; }
+  .msg.c{ align-self:flex-start; background:#ececec; }
+  .msg.b{ align-self:flex-end; background:var(--black); color:#fff; }
+  @keyframes msgIn{ from{ opacity:0; transform:translateY(10px) scale(.96); } to{ opacity:1; transform:none; } }
+  .typing{ display:flex; gap:5px; padding:13px 16px; animation:msgIn .25s both; }
+  .typing.b{ align-self:flex-end; background:var(--black); }
+  .typing.c{ align-self:flex-start; background:#ececec; }
+  .typing i{ width:6px; height:6px; background:#fff; animation:blink 1s steps(1) infinite; }
+  .typing.c i{ background:#000; }
+  .typing i:nth-child(2){ animation-delay:.25s; } .typing i:nth-child(3){ animation-delay:.5s; }
+  .ocard{ border:1px solid var(--black); background:#fff; }
+  .ocard-head{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:14px 18px; border-bottom:1px solid var(--black); font-size:13px; font-weight:700; }
+  .ocard-head .id{ color:var(--red); font-family:'Space Mono',monospace; }
+  .ai-chip{ display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line-on-white); padding:4px 10px; font-size:11px; transition:all .2s; }
+  .ai-chip.on{ background:var(--red); border-color:var(--red); color:#fff; }
+  .orow{ display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 18px; border-bottom:1px solid var(--line-on-white); font-size:14px; transition:background .8s; }
+  .orow:last-child{ border-bottom:none; }
+  .orow .k{ opacity:.55; }
+  .orow .v{ font-weight:700; text-align:left; }
+  .orow.empty .v{ opacity:.25; }
+  .orow.flash{ background:rgba(255,26,26,.14); }
+  .v.b{ padding:3px 12px; border:1px solid #000; font-size:13px; }
+  .v.unpaid{ color:var(--red); border-color:var(--red); }
+  .v.paid{ background:#000; color:#fff; }
+  .v.ship{ background:var(--red); color:#fff; border-color:var(--red); }
+  .p-foot{ display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:22px; font-size:12px; opacity:.7; flex-wrap:wrap; }
+
+
+  /* ===== PREMIUM REDESIGN ===== */
+  .wrap{ max-width:1120px; }
+  section{ padding:clamp(100px,14vw,190px) 0; }
+  .btn{ padding:16px 30px; }
+  .eyebrow{ opacity:.55; margin-bottom:28px; }
+  .hero{ min-height:calc(100vh - 68px); display:flex; align-items:center; padding:0; }
+  .hero::before{ background-image:radial-gradient(rgba(0,0,0,.09) 1.2px,transparent 1.5px); background-size:34px 34px; }
+  .hero-inner{ width:100%; padding-top:40px; padding-bottom:80px; }
+  .hero h1{ font-size:clamp(46px,9.5vw,136px); line-height:1.04; margin:0 0 40px; }
+  html[dir="rtl"] .hero h1{ line-height:1.35; }
+  .hero .sub{ font-size:17px; max-width:470px; opacity:.65; margin:0 0 52px; }
+  .hero-actions{ gap:16px; margin:0; }
+  .scroll-hint{ position:absolute; bottom:30px; left:50%; width:1px; height:56px; background:rgba(0,0,0,.14); overflow:hidden; }
+  .scroll-hint span{ display:block; width:1px; height:50%; background:var(--red); animation:drop 1.9s ease-in-out infinite; }
+  @keyframes drop{ from{ transform:translateY(-100%); } to{ transform:translateY(200%); } }
+  .problem h2{ font-size:clamp(40px,7.4vw,104px); max-width:900px; margin:0 0 56px; }
+  html[dir="rtl"] .problem h2{ line-height:1.4; }
+  .lost{ display:flex; flex-wrap:wrap; gap:14px 28px; font-size:13px; letter-spacing:.06em; text-transform:uppercase; opacity:.5; margin:0; }
+  .lost span + span::before{ content:"/"; color:var(--red); margin-inline-end:28px; }
+  .solution{ padding:clamp(120px,18vw,240px) 0; }
+  .solution h2{ font-size:clamp(34px,6.4vw,92px); max-width:900px; }
+  .process{ background:#f6f6f4; }
+  .process h2,.product h2,.pricing h2,.about-intro h2{ max-width:720px; }
+  .process .sub-text{ margin-bottom:72px; }
+  .product .sub-text,.pricing .sub-text{ margin-bottom:88px; }
+  .modgrid{ background:none; border:none; gap:clamp(28px,4vw,64px); }
+  .mod{ background:none; padding:28px 0 0; border-top:1px solid var(--black); }
+  .mod:hover{ background:none; color:inherit; }
+  .mod .idx{ margin-bottom:28px; }
+  .mod h3{ font-size:17px; margin:0 0 14px; }
+  .mod ul{ display:block; }
+  .mod li{ display:inline; padding:0; font-size:13px; line-height:2; opacity:.55; }
+  .mod li::before{ content:none; }
+  .mod li:not(:last-child)::after{ content:" \00B7 "; }
+  .about-intro{ margin-bottom:96px; }
+  .pricing{ text-align:center; }
+  .pricing h2,.pricing .sub-text,.pricing .eyebrow{ margin-inline:auto; justify-content:center; }
+  .plans-2{ grid-template-columns:1fr; max-width:480px; margin:0 auto; border:none; background:none; }
+  .plan{ text-align:start; padding:56px 44px; }
+  .plan .price{ font-size:56px; margin-bottom:6px; }
+  .plan ul{ gap:14px; margin:26px 0 40px; }
+  .ent{ margin:36px 0 0; font-size:13px; opacity:.7; }
+  .ent button{ background:none; border:none; border-bottom:1px solid var(--red); padding:0 0 3px; font-size:13px; color:inherit; }
+  .seats h2{ font-size:clamp(40px,8.5vw,120px); margin:0 0 28px; }
+  .seats-sub{ margin:0 0 72px; }
+  .seat-stats{ display:none; }
+  .seat-map{ margin-bottom:64px; }
+  .seats-cta{ display:flex; align-items:center; justify-content:space-between; gap:28px; flex-wrap:wrap; }
+  .seats-price b{ display:block; font-family:'Doto','Space Mono',monospace; font-weight:900; font-size:44px; line-height:1; margin-bottom:8px; }
+  .seats-price span{ font-size:12px; opacity:.55; }
+  html[dir="rtl"] .seats-price b{ font-family:'Space Mono',monospace; }
+  footer{ padding:64px 0; text-align:center; line-height:1.4; }
+
+  /* ===== COMPACT PASS ===== */
+  section{ padding:clamp(72px,9vw,120px) 0; }
+  .btn{ padding:13px 22px; font-size:12px; }
+  .eyebrow{ font-size:11px; margin-bottom:20px; }
+  .pill{ padding:12px 14px; font-size:11px; }
+  .hero{ min-height:min(86vh,720px); }
+  .hero h1{ font-size:clamp(34px,6vw,76px); margin:0 0 28px; }
+  .hero .sub{ font-size:14.5px; max-width:420px; margin:0 0 36px; }
+  .process .sub-text{ margin-bottom:44px; }
+  .process h2,.product h2,.pricing h2,.about-intro h2{ font-size:clamp(24px,3.4vw,40px); }
+  .sub-text,.process .sub-text{ font-size:13px; }
+  .p-steps,.p-stage{ max-width:900px; margin-inline:auto; }
+  .p-steps div{ font-size:12px; padding:10px 12px; }
+  .p-steps{ margin-bottom:20px; }
+  .chat-area{ height:340px; padding:14px; gap:8px; }
+  .msg{ font-size:13px; padding:8px 12px; }
+  .phone-head{ padding:10px 14px; font-size:13px; }
+  .ocard-head{ padding:11px 16px; font-size:12px; }
+  .orow{ padding:9px 16px; font-size:13px; }
+  .p-foot{ max-width:900px; margin-inline:auto; margin-top:16px; }
+  .problem h2{ font-size:clamp(28px,4.6vw,58px); margin:0 0 36px; }
+  .lost{ font-size:11px; }
+  .solution{ padding:clamp(80px,11vw,140px) 0; }
+  .solution h2{ font-size:clamp(26px,4.2vw,54px); }
+  .product .sub-text,.pricing .sub-text{ margin-bottom:52px; }
+  .mod .idx{ margin-bottom:18px; }
+  .mod h3{ font-size:14px; }
+  .mod li{ font-size:12px; }
+  .about-intro{ margin-bottom:56px; gap:32px; }
+  .about-intro p.body{ font-size:13.5px; }
+  .journey{ height:calc(var(--n) * 65vh + 20vh); }
+  .j-num{ font-size:clamp(64px,13vw,150px); }
+  .j-card h3{ font-size:clamp(24px,3.4vw,38px); margin-bottom:14px; }
+  .j-card p{ font-size:14px; }
+  .j-status{ margin-bottom:16px; }
+  .j-bar{ margin-top:28px; }
+  .plans-2{ max-width:400px; }
+  .plan{ padding:40px 32px; }
+  .plan .price{ font-size:40px; }
+  .plan li{ font-size:12px; }
+  .plan .tagline{ margin-bottom:8px; }
+  .plan ul{ margin:20px 0 28px; gap:10px; }
+  .ent,.ent button{ font-size:12px; }
+  footer{ padding:40px 0; font-size:11px; }
+  /* spots: compact two-column */
+  .seats{ padding:clamp(64px,8vw,96px) 0; }
+  .seats .wrap{ display:grid; grid-template-columns:1fr minmax(0,340px); column-gap:clamp(32px,6vw,80px); align-items:center; }
+  .seats .wrap > *{ grid-column:1; }
+  .seats .seat-map{ grid-column:2; grid-row:1 / span 4; margin:0; gap:3px; }
+  .seats h2{ font-size:clamp(24px,3.4vw,40px); margin:0 0 14px; }
+  .seats-sub{ font-size:12.5px; margin:0 0 28px; max-width:400px; }
+  .seats-cta{ gap:18px; justify-content:flex-start; }
+  .seats-price b{ font-size:28px; margin-bottom:4px; }
+  @media (max-width:760px){
+    .seats .wrap{ display:block; }
+    .seats .seat-map{ max-width:300px; margin:0 0 28px; }
+  }
+
+  /* ===== PRICING CALCULATOR ===== */
+  .calc{ max-width:860px; margin:0 auto; text-align:start; }
+  .calc-q{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; font-size:11px; letter-spacing:.07em; text-transform:uppercase; margin-bottom:10px; }
+  .calc-q b{ font-family:'Doto','Space Mono',monospace; font-weight:900; font-variation-settings:"wght" 900; font-size:42px; line-height:1; letter-spacing:0; }
+  .calc-slider{ direction:ltr; }
+  #calcR{ width:100%; -webkit-appearance:none; appearance:none; height:2px; margin:18px 0 10px; outline:none; cursor:pointer;
+    background:linear-gradient(90deg,var(--red) var(--p,18%),rgba(0,0,0,.18) var(--p,18%)); }
+  #calcR::-webkit-slider-thumb{ -webkit-appearance:none; width:18px; height:18px; background:var(--red); border:none; border-radius:0; }
+  #calcR::-moz-range-thumb{ width:18px; height:18px; background:var(--red); border:none; border-radius:0; }
+  .calc-scale{ position:relative; height:16px; font-size:10.5px; letter-spacing:.05em; opacity:.6; margin-bottom:36px; }
+  .calc-scale span{ position:absolute; top:0; }
+  .calc-scale span:first-child{ left:0; } .calc-scale span:last-child{ right:0; }
+  .calc-scale .mid{ left:48.7%; transform:translateX(-50%); color:var(--red); white-space:nowrap; }
+  .calc-out{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:760px){ .calc-out{ grid-template-columns:1fr; } }
+  .calc-card{ background:var(--black); color:#fff; padding:32px 30px; border:1px solid var(--black); transition:background .25s,color .25s; }
+  .calc-card.alt{ background:#fff; color:#000; }
+  .cpn{ font-size:11px; text-transform:uppercase; letter-spacing:.07em; opacity:.6; margin-bottom:12px; }
+  .calc-price{ font-family:'Doto','Space Mono',monospace; font-weight:900; font-variation-settings:"wght" 900; font-size:38px; line-height:1.1; }
+  html[dir="rtl"] .calc-price,html[dir="rtl"] .calc-q b{ font-family:'Space Mono',monospace; }
+  html[dir="rtl"] .calc-card:not(.alt) .calc-price{ font-family:'Cairo',sans-serif; }
+  .calc-price .per{ font-size:12px; opacity:.55; font-weight:400; font-family:'Space Mono',monospace; }
+  .calc-per{ font-size:12px; color:var(--red); margin:8px 0 22px; }
+  .calc-card.alt .calc-per{ color:#000; opacity:.6; }
+  .calc-feats{ list-style:none; margin:0 0 26px; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .calc-feats li{ font-size:12px; opacity:.85; padding-inline-start:14px; position:relative; }
+  .calc-feats li::before{ content:"+"; position:absolute; inset-inline-start:0; color:var(--red); font-weight:700; }
+  .calc-time{ border:1px solid var(--black); padding:32px 30px; display:flex; flex-direction:column; }
+  .clbl{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; opacity:.6; }
+  .calc-big{ display:flex; align-items:baseline; gap:10px; margin:14px 0 22px; }
+  .calc-big b{ font-family:'Doto','Space Mono',monospace; font-weight:900; font-variation-settings:"wght" 900; font-size:54px; line-height:1; }
+  .calc-big span{ font-size:12px; opacity:.6; }
+  .calc-bars{ display:grid; gap:12px; margin-bottom:auto; }
+  .crow{ display:flex; align-items:center; gap:12px; font-size:11.5px; }
+  .crow span{ width:78px; flex:none; opacity:.6; }
+  .crow em{ font-style:normal; font-weight:700; }
+  .track{ flex:1; height:8px; background:rgba(0,0,0,.08); }
+  .track i{ display:block; height:100%; width:0; background:var(--red); transition:width .35s ease; }
+  .calc-note{ font-size:11px; opacity:.5; margin:24px 0 0; }
+
+  .calc-scale{ margin-bottom:20px; }
+  .tiers{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:32px; direction:inherit; }
+  @media (max-width:520px){ .tiers{ grid-template-columns:repeat(2,1fr); } }
+  .tier{ background:none; border:1px solid var(--line-on-white); padding:10px 8px; font-size:11.5px; font-weight:700; color:inherit; text-align:center; transition:all .2s; }
+  .tier small{ display:block; font-weight:400; opacity:.5; margin-top:3px; font-size:10.5px; }
+  .tier:hover{ border-color:#000; }
+  .tier.on{ background:#000; color:#fff; border-color:#000; }
   .anchor-offset{ scroll-margin-top:80px; }
 </style>
 </head>
 <body>
+<div class="progress-bar" id="progressBar"></div>
 
 <header class="nav">
   <div class="wrap nav-inner">
@@ -285,14 +577,14 @@
       <span class="wordmark">WASLA</span>
     </div>
     <nav class="links">
-      <a href="#how" data-key="nav.how"></a>
+      <a href="#process" data-key="nav.how"></a>
+      <a href="#about" data-key="nav.about"></a>
       <a href="#features" data-key="nav.features"></a>
       <a href="#pricing" data-key="nav.pricing"></a>
-      <a href="#roadmap" data-key="nav.roadmap"></a>
     </nav>
     <div class="nav-actions">
       <button class="lang-toggle" id="langToggle"><span class="dot small static"></span><span id="langToggleLabel">AR</span></button>
-      <a class="btn btn-solid" href="#reserve" data-key="nav.cta"></a>
+      <a class="btn btn-solid" href="#seats" data-key="nav.cta"></a>
     </div>
   </div>
 </header>
@@ -300,74 +592,73 @@
 <main>
 
   <section class="hero on-white anchor-offset" id="how">
-    <div class="wrap">
-      <div class="hero-inner">
-        <p class="eyebrow"><span class="dot small"></span><span data-key="hero.eyebrow"></span></p>
-        <h1 class="display" id="heroTitle"></h1>
-        <p class="sub" data-key="hero.sub"></p>
-        <div class="hero-actions">
-          <a class="btn btn-solid" href="#reserve" data-key="hero.cta"></a>
-        </div>
-        <p class="note" data-key="hero.note"></p>
+    <div class="wrap hero-inner">
+      <p class="eyebrow"><span class="dot small"></span><span data-key="hero.eyebrow"></span></p>
+      <h1 class="display" id="heroTitle"></h1>
+      <p class="sub" data-key="hero.sub"></p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#seats" data-key="hero.cta"></a>
+        <a class="pill" href="#seats"><span class="dot small"></span><span id="heroPill"></span></a>
       </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><span></span></div>
+  </section>
 
-      <div class="hero-visual">
-        <div class="chat-demo">
-          <div class="chat-bubble" data-key="chat.msg"></div>
-          <div class="chat-arrow">→</div>
-          <div class="order-card">
-            <div class="order-card-head">
-              <span data-key="chat.neworder"></span>
-              <span class="id">#WSL-1042</span>
+  <section class="process anchor-offset" id="process">
+    <div class="wrap">
+      <p class="eyebrow"><span class="dot small"></span><span data-key="process.eyebrow"></span></p>
+      <h2 class="display" data-key="process.title"></h2>
+      <p class="sub-text" data-key="process.sub"></p>
+      <div class="p-steps" id="pSteps">
+        <div><b>١</b>العميل بيبعت رسالة</div><div><b>٢</b>الشات بيسأل عن الناقص</div><div><b>٣</b>الـ AI بيبني الأوردر</div><div><b>٤</b>الدفع والشحن</div>
+      </div>
+      <div class="p-stage">
+        <div class="phone">
+          <div class="phone-head"><span class="avatar">و</span><span>متجر الأناقة<small>وصلة بترد بدالك</small></span></div>
+          <div class="chat-area" id="pChat"></div>
+        </div>
+        <div class="p-link">&larr;</div>
+        <div class="ocard" id="pCard">
+          <div class="ocard-head"><span>أوردر جديد <span class="id">#WSL-1043</span></span><span class="ai-chip" id="pChip">&#10022; وصلة AI</span></div>
+          <div class="orow empty" data-r="product"><span class="k">المنتج</span><span class="v">…</span></div>
+          <div class="orow empty" data-r="qty"><span class="k">الكمية</span><span class="v">…</span></div>
+          <div class="orow empty" data-r="color"><span class="k">اللون</span><span class="v">…</span></div>
+          <div class="orow empty" data-r="cust"><span class="k">العميل</span><span class="v">…</span></div>
+          <div class="orow empty" data-r="addr"><span class="k">العنوان</span><span class="v">…</span></div>
+          <div class="orow empty" data-r="total"><span class="k">الإجمالي</span><span class="v">…</span></div>
+          <div class="orow empty" data-r="pay"><span class="k">الدفع</span><span class="v">…</span></div>
+          <div class="orow empty" data-r="status"><span class="k">الحالة</span><span class="v">…</span></div>
+        </div>
+      </div>
+      <div class="p-foot"><span data-key="process.demo"></span><button class="btn btn-sm" id="pReplay" data-key="process.replay"></button></div>
+    </div>
+  </section>
+
+  <section class="about on-black anchor-offset" id="about">
+    <div class="wrap">
+      <div class="about-intro">
+        <div>
+          <p class="eyebrow"><span class="dot small"></span><span data-key="about.eyebrow"></span></p>
+          <h2 class="display" data-key="about.title"></h2>
+        </div>
+        <div>
+          <p class="body" data-key="about.body"></p>
+        </div>
+      </div>
+      <div class="journey" id="journey" style="--n:6">
+        <div class="stage" id="stage">
+          <div class="j-left"><div class="j-num" id="jNum">01</div><div class="j-rail" id="jRail"></div></div>
+          <div class="j-right">
+            <div class="j-card" id="jCard" data-k="done">
+              <div class="j-status"><span class="dot small"></span><span id="jStatusTxt"></span></div>
+              <h3 class="display" id="jTitle"></h3>
+              <p id="jBody"></p>
             </div>
-            <div class="order-row"><span class="k" data-key="chat.lbl.product"></span><span class="v" data-key="chat.val.product"></span></div>
-            <div class="order-row"><span class="k" data-key="chat.lbl.qty"></span><span class="v">2</span></div>
-            <div class="order-row"><span class="k" data-key="chat.lbl.customer"></span><span class="v" data-key="chat.val.customer"></span></div>
-            <div class="order-row"><span class="k" data-key="chat.lbl.address"></span><span class="v" data-key="chat.val.address"></span></div>
-            <div class="order-row status"><span class="k" data-key="chat.lbl.status"></span><span class="v" data-key="chat.val.status"></span></div>
+            <div class="j-bar"><b id="jBar"></b></div>
+            <div class="j-hint" data-key="about.hint"></div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="stats-strip">
-      <div class="wrap" style="display:contents;">
-        <div class="stat"><div class="num">400+</div><div class="lbl" data-key="stats.s1"></div></div>
-        <div class="stat"><div class="num">3</div><div class="lbl" data-key="stats.s2"></div></div>
-        <div class="stat"><div class="num">EGP</div><div class="lbl" data-key="stats.s3"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="problem on-white">
-    <div class="wrap">
-      <p class="eyebrow"><span class="dot small"></span><span data-key="problem.eyebrow"></span></p>
-      <h2 class="display" data-key="problem.headline"></h2>
-      <p class="body-text" data-key="problem.body"></p>
-
-      <div class="cards3">
-        <div class="card3">
-          <div class="icon"></div>
-          <h3 data-key="problem.c1.title"></h3>
-          <p data-key="problem.c1.body"></p>
-        </div>
-        <div class="card3">
-          <div class="icon"></div>
-          <h3 data-key="problem.c2.title"></h3>
-          <p data-key="problem.c2.body"></p>
-        </div>
-        <div class="card3">
-          <div class="icon"></div>
-          <h3 data-key="problem.c3.title"></h3>
-          <p data-key="problem.c3.body"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="solution on-black">
-    <div class="wrap">
-      <h2 class="display"><span class="redmark" data-key="solution.title"></span></h2>
     </div>
   </section>
 
@@ -426,84 +717,56 @@
       <h2 class="display" data-key="pricing.headline"></h2>
       <p class="sub-text" data-key="pricing.sub"></p>
 
-      <div class="plans plans-2">
-        <div class="plan featured">
-          <div class="pname" data-key="plan.main.name"></div>
-          <div class="price">599 <span class="en-num">EGP</span><span class="per">/mo</span></div>
-          <div class="tagline" data-key="plan.main.tagline"></div>
-          <ul>
-            <li data-key="plan.main.f1"></li>
-            <li data-key="plan.main.f2"></li>
-            <li data-key="plan.main.f3"></li>
-            <li data-key="plan.main.f4"></li>
-          </ul>
-          <a class="btn btn-outline-white" href="#reserve" data-key="plan.main.cta"></a>
+      <div class="calc">
+        <div class="calc-q"><span data-key="calc.q"></span><b id="calcN">400</b></div>
+        <div class="calc-slider">
+          <input type="range" id="calcR" min="50" max="2000" step="50" value="400" aria-label="Orders per month">
+          <div class="calc-scale"><span>50</span><span>2,000+</span></div>
+          <div class="tiers" id="tiers"></div>
         </div>
-
-        <div class="plan">
-          <div class="pname" data-key="plan.enterprise.name"></div>
-          <div class="price" data-key="plan.enterprise.price"></div>
-          <div class="tagline" data-key="plan.enterprise.tagline"></div>
-          <ul>
-            <li data-key="plan.enterprise.f1"></li>
-            <li data-key="plan.enterprise.f2"></li>
-            <li data-key="plan.enterprise.f3"></li>
-            <li data-key="plan.enterprise.f4"></li>
-          </ul>
-          <button class="btn" id="enterpriseBtn" data-key="plan.enterprise.cta"></button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="honesty on-black anchor-offset" id="roadmap">
-    <div class="wrap">
-      <div class="tag-pill"><span class="dot small"></span><span data-key="honesty.tag"></span></div>
-      <h2 class="display" data-key="honesty.title"></h2>
-      <p data-key="honesty.body"></p>
-    </div>
-  </section>
-
-  <section class="reserve on-white anchor-offset" id="reserve">
-    <div class="wrap">
-      <p class="eyebrow"><span class="dot small"></span><span data-key="reserve.eyebrow"></span></p>
-      <div class="reserve-box">
-        <div class="reserve-main">
-          <h2 class="display" data-key="reserve.title"></h2>
-          <p class="body-text" data-key="reserve.body"></p>
-          <ul class="reserve-points">
-            <li data-key="reserve.p1"></li>
-            <li data-key="reserve.p2"></li>
-            <li data-key="reserve.p3"></li>
-          </ul>
-        </div>
-        <div class="reserve-side">
-          <div class="reserve-price">99 <span class="en-num">EGP</span></div>
-          <div class="reserve-note" data-key="reserve.note"></div>
-          <div class="reserve-progress-lbl">
-            <span data-key="reserve.spotsleft"></span>
-            <span id="reserveSpotsCount"></span>
+        <div class="calc-out">
+          <div class="calc-card" id="calcCard">
+            <div class="cpn" id="calcPlan"></div>
+            <div class="calc-price" id="calcPrice"></div>
+            <div class="calc-per" id="calcPer"></div>
+            <ul class="calc-feats" id="calcFeats"></ul>
+            <a class="btn btn-outline-white" id="calcCta" href="#seats"></a>
           </div>
-          <div class="reserve-progress-track"><div class="reserve-progress-fill" id="reserveProgressFill"></div></div>
-          <button class="btn btn-outline-white" id="reserveBtn" data-key="reserve.cta"></button>
+          <div class="calc-time">
+            <div class="clbl" data-key="calc.manual"></div>
+            <div class="calc-big"><b id="calcH">0</b><span data-key="calc.hrs"></span></div>
+            <div class="calc-bars">
+              <div class="crow"><span data-key="calc.hand"></span><div class="track"><i id="barM"></i></div></div>
+              <div class="crow"><span data-key="calc.with"></span><div class="track"><i></i></div><em>0</em></div>
+            </div>
+            <p class="calc-note" data-key="calc.note"></p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="finalcta on-white">
+  <section class="seats on-black anchor-offset" id="seats">
     <div class="wrap">
-      <h2 class="display" data-key="finalcta.title"></h2>
-      <p data-key="finalcta.sub"></p>
-      <a class="btn btn-solid" href="#reserve" data-key="finalcta.button"></a>
+      <p class="eyebrow"><span class="dot small"></span><span data-key="seats.eyebrow"></span></p>
+      <h2 class="display" id="seatsTitle"></h2>
+      <p class="seats-sub" data-key="seats.sub"></p>
+      <div class="seat-stats"><div><b id="stAvail">400</b></div><div><b id="stRes">0</b></div><div><b id="stTot">400</b></div></div>
+      <div class="seat-map" id="seatMap" role="group"></div>
+      <div class="seats-cta">
+        <div class="seats-price"><b>99 <span class="en-num">EGP</span></b><span data-key="reserve.note"></span></div>
+        <button class="btn btn-outline-white" id="reserveBtn" data-key="reserve.cta"></button>
+      </div>
     </div>
   </section>
 
-</main>
+  </main>
 
 <footer>
-  <div class="wrap"><span data-key="footer.text"></span></div>
+  <div class="wrap"><span class="wordmark" style="opacity:1;font-size:18px">WASLA</span><br><br><span data-key="footer.text"></span></div>
 </footer>
+
+<a class="float-cta" id="floatCta" href="#seats"><span class="dot small"></span><span id="floatTxt"></span><b>&rarr;</b></a>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-card">
@@ -538,8 +801,9 @@ const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdJXZqwfJOg6l4epLtpjJ
    BOOKING_URL: your Calendly (or similar) link here for the Enterprise "Book a call" button.
    Until you add one, it falls back to opening the same sign-up form so leads aren't lost. */
 const TOTAL_SPOTS = 400;
-const SPOTS_RESERVED = 0;
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1AoLholizTpuR-QGaNOWQmfwa0hEuYTWEJrM_xDB-c0c/gviz/tq?tqx=out:csv&gid=1085262494";
+const SPOTS_RESERVED = 44;
+const SHEET_CSV_URL_LIVE = "https://docs.google.com/spreadsheets/d/1AoLholizTpuR-QGaNOWQmfwa0hEuYTWEJrM_xDB-c0c/gviz/tq?tqx=out:csv&gid=1085262494&tq=select%20count(B)"; // paste back into SHEET_CSV_URL to sync with the sheet
+const SHEET_CSV_URL = "";
 const RESERVE_PAYMENT_URL = "";
 const BOOKING_URL = "";
 
@@ -547,7 +811,7 @@ const content = {
   en: {
     "nav.how":"How it works", "nav.features":"Features", "nav.pricing":"Pricing", "nav.reserve":"Reserve a spot", "nav.roadmap":"Roadmap", "nav.cta":"Reserve your spot",
     "hero.eyebrow":"Coming soon for online sellers in Egypt",
-    "hero.sub":"Wasla turns your customers' WhatsApp messages into organized orders, automatically — name, product, color, address, and status, all in one place instead of digging through the chat. Stop losing orders in WhatsApp. Keep everything organized in Wasla.",
+    "hero.sub":"Wasla turns your customers' WhatsApp messages into organized orders. Automatically.",
     "hero.cta":"Reserve your spot",
     "hero.note":"Only 400 founding spots — reserve yours for 99 EGP and keep 599 EGP/month for a full year.",
     "chat.msg":"I want 2 AirPods in white, address is Mansoura. My name's Kareem, you already have my number 🙏",
@@ -576,8 +840,8 @@ const content = {
     "product.m3.title":"Inventory","product.m3.i1":"Stock per product","product.m3.i2":"Low-stock alerts","product.m3.i3":"Auto-updates with every order",
     "product.m4.title":"Customers","product.m4.i1":"Order history","product.m4.i2":"Total spent","product.m4.i3":"Repeat customers",
     "pricing.eyebrow":"Pricing",
-    "pricing.headline":"One plan for most sellers. One for scale.",
-    "pricing.sub":"Straightforward pricing based on how many orders you actually process.",
+    "pricing.headline":"Pay for the orders you actually get.",
+    "pricing.sub":"Slide to see what Wasla costs for your shop \u2014 and the hours you get back.",
     "plan.main.name":"Wasla","plan.main.tagline":"For sellers under 1,000 orders / month",
     "plan.main.f1":"AI order extraction from WhatsApp","plan.main.f2":"Unlimited orders up to 1,000/mo","plan.main.f3":"Inventory & customer history","plan.main.f4":"Sales reports & dashboard","plan.main.cta":"Reserve your spot",
     "plan.enterprise.name":"Enterprise","plan.enterprise.tagline":"For stores doing 1,000+ orders / month",
@@ -599,12 +863,42 @@ const content = {
     "finalcta.sub":"Reserve your spot now, and you'll be among the first to try Wasla.",
     "finalcta.button":"Reserve your spot",
     "footer.text":"© 2026 Wasla — made with care for Egypt's merchants.",
-    "modal.title":"Reserve your spot"
+    "modal.title":"Reserve your spot",
+    "nav.about":"About",
+    "calc.q":"Orders per month","calc.cap":"Up to {c} orders / month","calc.ent":"1,000+ \u2192 Enterprise","calc.per":"\u2248 {c} EGP per order","calc.entper":"Custom volume & pricing",
+    "calc.manual":"Time spent typing orders by hand","calc.hrs":"hours / month","calc.hand":"By hand","calc.with":"With Wasla","calc.note":"Estimate: about 2 minutes per order typed by hand.",
+    "process.eyebrow":"How it works",
+    "process.title":"From a WhatsApp chat to a paid order. You type nothing.",
+    "process.sub":"Wasla talks to your customer like a human: asks for whatever is missing, confirms the total, checks payment, then builds the order for you.",
+    "process.replay":"Replay \u21BA","process.demo":"Illustrative demo \u2014 the conversation is in Arabic",
+    "ticker":"WhatsApp message|Order extracted|Stock updated|Ready to ship|Zero manual typing",
+    "hero.pill":"{r} / {t} spots reserved",
+    "float.txt":"{n} spots left \u2014 reserve yours",
+    "about.eyebrow":"About",
+    "about.title":"Orders get lost in WhatsApp. Wasla fixes that.",
+    "about.body":"I'm Ali \u2014 I run a social media agency and build products. Most Egyptian sellers manage orders with Excel, starred messages and notebooks: tools never built for it. Wasla is built to fix that.",
+    "about.t1":"Founder","about.t2":"Social media agency","about.t3":"Builder","about.t4":"AR / EN",
+    "about.hint":"Keep scrolling to follow the journey \u2193",
+    "st":{done:"Done",now:"Now",next:"Next"},
+    "j":[
+      {k:"done",t:"The problem",b:"Excel gets heavy, starred messages get buried, notebooks never warn you. Orders slip through the cracks."},
+      {k:"done",t:"The idea",b:"What if the chat built the order by itself? Wasla reads the message and fills in everything. No typing."},
+      {k:"now",t:"Talking to sellers",b:"Research and design phase. We listen to sellers first, so Wasla ends up faster than Excel and WhatsApp."},
+      {k:"now",t:"400 founding spots",b:"Reserve for 99 EGP and lock your founding price for a full year. First access the day we go live."},
+      {k:"next",t:"The first version",b:"Dashboard, orders, inventory and customers \u2014 the four things every seller needs from day one."},
+      {k:"next",t:"Launch",b:"Founding sellers get in first, and their feedback shapes everything that comes after."}
+    ],
+    "seats.eyebrow":"Founding spots",
+    "seats.title":"{n} spots left.",
+    "seats.soldout":"All 400 spots are taken.",
+    "seats.sub":"Reserve for 99 EGP and lock your founding price for a full year. When the map is full, founding access closes.",
+    "seats.avail":"Available","seats.res":"Reserved","seats.total":"Total spots",
+    "seats.l.res":"Reserved","seats.l.avail":"Available \u2014 click to reserve","seats.l.next":"Next spot"
   },
   ar: {
     "nav.how":"إزاي بيشتغل", "nav.features":"المميزات", "nav.pricing":"الأسعار", "nav.reserve":"احجز مكانك", "nav.roadmap":"خطة الإطلاق", "nav.cta":"احجز مكانك",
     "hero.eyebrow":"قريبًا لأصحاب المتاجر الأونلاين في مصر",
-    "hero.sub":"وصلة بتحول رسايل العملاء على واتساب لأوردرات منظمة أوتوماتيك: الاسم، المنتج، اللون، العنوان، والحالة، كله في مكان واحد بدل ما تدوّر عليه في الشات. بدل ما تضيع الطلبات بين رسائل واتساب، خلي كل طلباتك مرتبة في وصلة.",
+    "hero.sub":"وصلة بتحول رسايل العملاء على واتساب لأوردرات منظمة. أوتوماتيك.",
     "hero.cta":"احجز مكانك",
     "hero.note":"٤٠٠ مكان تأسيسي بس — احجز مكانك بـ ٩٩ جنيه وخلي السعر ٥٩٩ جنيه شهريًا طول سنة كاملة.",
     "chat.msg":"عايز ٢ AirPods واللون أبيض والعنوان المنصورة، اسمي كريم ورقمي معاك من قبل 🙏",
@@ -633,8 +927,8 @@ const content = {
     "product.m3.title":"المخزون","product.m3.i1":"كمية كل منتج","product.m3.i2":"تنبيه لو المخزون قرب يخلص","product.m3.i3":"تحديث تلقائي مع كل أوردر",
     "product.m4.title":"العملاء","product.m4.i1":"سجل الأوردرات السابقة","product.m4.i2":"إجمالي المصروف","product.m4.i3":"أكتر عملاء بيكرروا الشراء",
     "pricing.eyebrow":"الأسعار",
-    "pricing.headline":"باقة واحدة لمعظم البائعين، وباقة للنمو الكبير.",
-    "pricing.sub":"أسعار واضحة على حسب عدد الأوردرات اللي بتعالجها فعليًا.",
+    "pricing.headline":"ادفع على قد الأوردرات اللي بتيجيلك فعلًا.",
+    "pricing.sub":"حرّك السلايدر وشوف وصلة هتكلفك كام، وهتوفرلك كام ساعة.",
     "plan.main.name":"وصلة","plan.main.tagline":"للبائعين اللي بيعملوا أقل من ١٠٠٠ أوردر شهريًا",
     "plan.main.f1":"استخراج الأوردر من واتساب بالـ AI","plan.main.f2":"أوردرات غير محدودة لحد ١٠٠٠ شهريًا","plan.main.f3":"المخزون وسجل العملاء","plan.main.f4":"تقارير مبيعات وداشبورد","plan.main.cta":"احجز مكانك",
     "plan.enterprise.name":"Enterprise","plan.enterprise.tagline":"لأصحاب المتاجر اللي بيعملوا ١٠٠٠+ أوردر شهريًا",
@@ -656,7 +950,37 @@ const content = {
     "finalcta.sub":"احجز مكانك دلوقتي، وهتكون من أول اللي بيجربوا وصلة قبل الكل.",
     "finalcta.button":"احجز مكانك",
     "footer.text":"© 2026 وصلة — صنع بحب لتجار مصر.",
-    "modal.title":"احجز مكانك"
+    "modal.title":"احجز مكانك",
+    "nav.about":"عنّا",
+    "calc.q":"عدد الأوردرات في الشهر","calc.cap":"لحد {c} أوردر في الشهر","calc.ent":"١٠٠٠+ \u2190 Enterprise","calc.per":"\u2248 {c} جنيه للأوردر","calc.entper":"حجم وسعر مخصص",
+    "calc.manual":"الوقت اللي بتضيّعه في كتابة الأوردرات يدوي","calc.hrs":"ساعة / شهر","calc.hand":"يدوي","calc.with":"مع وصلة","calc.note":"تقدير: حوالي دقيقتين للأوردر لو بتكتبه بإيدك.",
+    "process.eyebrow":"إزاي بيشتغل",
+    "process.title":"من شات واتساب لأوردر مدفوع. من غير ما تكتب حاجة.",
+    "process.sub":"وصلة بتكلم العميل زي الإنسان: بتسأله عن الناقص، وبتأكد الإجمالي، وبتتأكد من الدفع، وبعدين بتبني الأوردر بدالك.",
+    "process.replay":"شغّل تاني \u21BA","process.demo":"مثال توضيحي",
+    "ticker":"رسالة واتساب|أوردر جاهز|المخزون اتحدّث|جاهز للشحن|من غير كتابة يدوي",
+    "hero.pill":"{r} / {t} مكان محجوز",
+    "float.txt":"فاضل {n} مكان \u2014 احجز دلوقتي",
+    "about.eyebrow":"عنّا",
+    "about.title":"الأوردرات بتضيع في واتساب. وصلة بتحل ده.",
+    "about.body":"أنا علي \u2014 بدير ايجنسي سوشيال ميديا وبعمل منتجات. أغلب البائعين في مصر بيديروا أوردراتهم بإكسل ورسايل بنجمة ودفاتر، وأدوات مش معمولة لكده أصلًا. ووصلة اتبنت عشان تحل ده.",
+    "about.t1":"مؤسس","about.t2":"ايجنسي سوشيال ميديا","about.t3":"بيلدر","about.t4":"عربي / English",
+    "about.hint":"كمّل سكرول عشان تمشي مع الرحلة \u2193",
+    "st":{done:"تم",now:"دلوقتي",next:"الجاي"},
+    "j":[
+      {k:"done",t:"المشكلة",b:"الإكسل بيتقل، والرسايل المميزة بتضيع، والدفاتر مبتنبهش. والأوردرات بتضيع من بين إيدك."},
+      {k:"done",t:"الفكرة",b:"إيه لو الشات يبني الأوردر لوحده؟ وصلة بتقرا الرسالة وتملّا كل حاجة من غير كتابة."},
+      {k:"now",t:"بنسمع من البائعين",b:"مرحلة البحث والتصميم. بنسمع من البائعين الأول عشان وصلة تطلع أسرع من الإكسل والواتساب."},
+      {k:"now",t:"٤٠٠ مكان تأسيسي",b:"احجز بـ ٩٩ جنيه وثبّت سعر التأسيس لمدة سنة كاملة. وأول وصول يوم الإطلاق."},
+      {k:"next",t:"النسخة الأولى",b:"داشبورد وأوردرات ومخزون وعملاء \u2014 الأربع حاجات اللي أي بائع محتاجها من أول يوم."},
+      {k:"next",t:"الإطلاق",b:"المؤسسين بيدخلوا الأول، وآراؤهم هي اللي بتشكّل كل اللي بعد كده."}
+    ],
+    "seats.eyebrow":"الأماكن التأسيسية",
+    "seats.title":"فاضل {n} مكان بس.",
+    "seats.soldout":"الـ ٤٠٠ مكان اتحجزوا كلهم.",
+    "seats.sub":"احجز بـ ٩٩ جنيه وثبّت سعر التأسيس لمدة سنة كاملة. أول ما الخريطة تتملي، باب الانضمام التأسيسي بيتقفل.",
+    "seats.avail":"متاح","seats.res":"محجوز","seats.total":"إجمالي الأماكن",
+    "seats.l.res":"محجوز","seats.l.avail":"متاح \u2014 دوس واحجز","seats.l.next":"المكان الجاي"
   }
 };
 
@@ -666,6 +990,138 @@ const heroTitleText = {
 };
 
 let currentLang = 'en';
+
+/* ===== v3 ENHANCEMENTS ===== */
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = id => document.getElementById(id);
+const J_N = 6;
+let reservedNow = 0, demoTok = 0, jIdx = 0;
+
+// seat map
+const seatMap = $('seatMap');
+for(let i = 0; i < TOTAL_SPOTS; i++){
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'seat'; b.style.setProperty('--i', i); b.dataset.n = '#' + (i + 1);
+  b.setAttribute('aria-label', 'Spot ' + (i + 1));
+  b.addEventListener('click', () => { if(!b.classList.contains('res')) $('reserveBtn').click(); });
+  seatMap.appendChild(b);
+}
+
+function renderSeats(){
+  const d = content[currentLang], left = TOTAL_SPOTS - reservedNow, s = seatMap.children;
+  for(let i = 0; i < s.length; i++){ s[i].classList.toggle('res', i < reservedNow); s[i].classList.toggle('next', i === reservedNow); }
+  $('seatsTitle').textContent = left > 0 ? d['seats.title'].replace('{n}', left) : d['seats.soldout'];
+  $('stAvail').textContent = left; $('stRes').textContent = reservedNow; $('stTot').textContent = TOTAL_SPOTS;
+  $('heroPill').textContent = d['hero.pill'].replace('{r}', reservedNow).replace('{t}', TOTAL_SPOTS);
+  $('floatTxt').textContent = d['float.txt'].replace('{n}', left);
+}
+
+// about journey (scroll-driven)
+const jRail = $('jRail');
+for(let i = 0; i < J_N; i++) jRail.appendChild(document.createElement('i'));
+function showStep(i, instant){
+  jIdx = i;
+  const L = content[currentLang], d = L.j[i], card = $('jCard');
+  $('jNum').textContent = String(i + 1).padStart(2, '0');
+  [...jRail.children].forEach((el, k) => el.className = k < i ? 'done' : k === i ? 'on' : '');
+  const apply = () => { card.dataset.k = d.k; $('jStatusTxt').textContent = L.st[d.k]; $('jTitle').textContent = d.t; $('jBody').textContent = d.b; card.classList.remove('out'); };
+  if(instant || RM) apply(); else { card.classList.add('out'); setTimeout(apply, 180); }
+}
+function inView(el){ const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; }
+function onScroll(){
+  const h = document.documentElement;
+  $('progressBar').style.width = (scrollY / Math.max(1, h.scrollHeight - innerHeight) * 100) + '%';
+  const j = $('journey'), r = j.getBoundingClientRect();
+  const p = Math.min(1, Math.max(0, (68 - r.top) / Math.max(1, r.height - $('stage').offsetHeight)));
+  $('jBar').style.width = (p * 100) + '%';
+  const idx = Math.min(J_N - 1, Math.floor(p * J_N));
+  if(idx !== jIdx) showStep(idx);
+  $('floatCta').classList.toggle('show', scrollY > 600 && !inView($('seats')));
+}
+addEventListener('scroll', onScroll, { passive: true });
+addEventListener('resize', onScroll);
+
+// scroll reveals + seat-map wave
+const rvSel = '.hero-inner > *,.problem .wrap > *,.solution h2,.process .wrap > *:not(.p-stage):not(.p-steps),.product .wrap > *,.pricing .wrap > *,.about-intro > div,.seats .wrap > *:not(.seat-map)';
+document.querySelectorAll(rvSel).forEach((el, i) => { el.classList.add('rv'); el.style.setProperty('--d', ((i % 4) * 0.08) + 's'); });
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+const io2 = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ seatMap.classList.add('go'); io2.disconnect(); } }), { threshold: .1 });
+io2.observe(seatMap);
+
+// process illustration (always Arabic)
+const P=[
+ {w:'c',s:0,t:'السلام عليكم، عايز AirPods',f:[['product','AirPods'],['status','جديد','b']]},
+ {w:'b',s:1,t:'أهلاً بيك يا فندم 🌟 تحت أمرك! حضرتك عايز كام قطعة وأنهي لون؟'},
+ {w:'c',s:1,t:'٢ لون أبيض',f:[['qty','٢'],['color','أبيض']]},
+ {w:'b',s:1,t:'تمام يا فندم ✨ اسم حضرتك إيه وتحب نوصلها فين؟'},
+ {w:'c',s:1,t:'كريم أحمد، المنصورة، شارع الجمهورية',f:[['cust','كريم أحمد'],['addr','المنصورة — ش الجمهورية']]},
+ {w:'b',s:2,t:'شكراً يا أستاذ كريم 🙏 الإجمالي ٢٬٤٠٠ جنيه شامل الشحن. تحب تدفع إنستاباي ولا كاش عند الاستلام؟',f:[['total','٢٬٤٠٠ جنيه'],['pay','في انتظار الدفع','b unpaid']]},
+ {w:'c',s:3,t:'إنستاباي، تم التحويل ✅'},
+ {w:'b',s:3,t:'وصلني التحويل يا فندم 🎉 الأوردر اتسجل وهيتشحن النهارده',f:[['pay','مدفوع ✓','b paid'],['status','جاهز للشحن','b ship']]}
+];
+const pChat=$('pChat'), pRows={};
+document.querySelectorAll('#pCard .orow').forEach(r=>pRows[r.dataset.r]=r);
+let pTok=0, pRun=false;
+function pStep(s){ [...$('pSteps').children].forEach((el,i)=>el.className=i<s?'done':i===s?'on':''); }
+function pFill(k,val,cls){
+  const r=pRows[k], v=r.querySelector('.v'); v.textContent=val; v.className='v'+(cls?' '+cls:'');
+  r.classList.remove('empty'); r.classList.add('flash'); setTimeout(()=>r.classList.remove('flash'),900);
+  const c=$('pChip'); c.classList.add('on'); setTimeout(()=>c.classList.remove('on'),900);
+}
+function pAdd(m){ const d=document.createElement('div'); d.className='msg '+m.w; d.textContent=m.t; pChat.appendChild(d); }
+function pReset(){
+  pChat.innerHTML='';
+  Object.values(pRows).forEach(r=>{ const v=r.querySelector('.v'); v.textContent='…'; v.className='v'; r.classList.add('empty'); });
+  pStep(-1);
+}
+function runProcess(){
+  const tok=++pTok; pRun=true; pReset();
+  if(RM){ P.forEach(m=>{ pAdd(m); (m.f||[]).forEach(f=>pFill(...f)); }); pStep(3); pRun=false; return; }
+  let i=0;
+  (function next(){
+    if(tok!==pTok) return;
+    if(i>=P.length){ pRun=false; setTimeout(()=>{ if(tok===pTok && inView($('process'))) runProcess(); },7000); return; }
+    const m=P[i++]; pStep(m.s);
+    const ty=document.createElement('div'); ty.className='typing '+m.w; ty.innerHTML='<i></i><i></i><i></i>'; pChat.appendChild(ty);
+    setTimeout(()=>{
+      if(tok!==pTok) return;
+      ty.remove(); pAdd(m); (m.f||[]).forEach(f=>pFill(...f));
+      setTimeout(next, m.w==='b'?1100:900);
+    }, (m.w==='b'?900:700)+m.t.length*14);
+  })();
+}
+$('pReplay').addEventListener('click',runProcess);
+new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting && !pRun) runProcess(); }),{threshold:.3}).observe($('process'));
+
+// pricing calculator
+const calcR=$('calcR');
+const TIERS=[{n:'Starter',cap:150,price:599},{n:'Growth',cap:400,price:999},{n:'Scale',cap:1000,price:1799}];
+const tiersEl=$('tiers');
+[...TIERS.map(t=>({l:t.n,sub:'\u2264 '+t.cap.toLocaleString('en-US'),v:t.cap})),{l:'Enterprise',sub:'1,000+',v:1500}].forEach(t=>{
+  const b=document.createElement('button'); b.type='button'; b.className='tier'; b.innerHTML='<span></span><small></small>';
+  b.children[0].textContent=t.l; b.children[1].textContent=t.sub;
+  b.addEventListener('click',()=>{ calcR.value=t.v; renderCalc(); }); tiersEl.appendChild(b);
+});
+function renderCalc(){
+  const d=content[currentLang], n=+calcR.value, ti=n>1000?3:n>400?2:n>150?1:0, ent=ti===3, t=TIERS[ti]||{};
+  $('calcN').textContent=n.toLocaleString('en-US')+(n>=2000?'+':'');
+  calcR.style.setProperty('--p',((n-50)/1950*100)+'%');
+  [...tiersEl.children].forEach((b,i)=>b.classList.toggle('on',i===ti));
+  const hrs=n*2/60; $('calcH').textContent=hrs.toFixed(1); $('barM').style.width=(hrs/(2000*2/60)*100)+'%';
+  $('calcCard').classList.toggle('alt',ent);
+  $('calcPlan').textContent=ent?d['plan.enterprise.name']:t.n;
+  $('calcPrice').innerHTML=ent?d['plan.enterprise.price']:t.price.toLocaleString('en-US')+' <span class="en-num">EGP</span><span class="per">/mo</span>';
+  $('calcPer').textContent=ent?d['calc.entper']:d['calc.per'].replace('{c}',(t.price/n).toFixed(1));
+  const feats=ent?['f1','f2','f3','f4'].map(f=>d['plan.enterprise.'+f]):[d['plan.main.f1'],d['calc.cap'].replace('{c}',t.cap.toLocaleString('en-US')),d['plan.main.f3'],d['plan.main.f4']];
+  const ul=$('calcFeats'); ul.innerHTML=''; feats.forEach(x=>{ const li=document.createElement('li'); li.textContent=x; ul.appendChild(li); });
+  const cta=$('calcCta'); cta.textContent=d['plan.'+(ent?'enterprise':'main')+'.cta']; cta.className='btn '+(ent?'btn-solid':'btn-outline-white');
+}
+calcR.addEventListener('input',renderCalc);
+$('calcCta').addEventListener('click',e=>{ if(+calcR.value>1000){ e.preventDefault(); if(BOOKING_URL) window.open(BOOKING_URL,'_blank'); else $('reserveBtn').click(); } });
+
+function afterLang(){ renderSeats(); renderCalc(); showStep(jIdx, true); onScroll(); }
+
 
 function renderHeroTitle(lang){
   const el = document.getElementById('heroTitle');
@@ -690,6 +1146,7 @@ function applyLang(lang){
   document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   document.body.classList.toggle('lang-ar', lang === 'ar');
   document.getElementById('langToggleLabel').textContent = lang === 'ar' ? 'EN' : 'AR';
+  afterLang();
 }
 
 document.getElementById('langToggle').addEventListener('click', () => {
@@ -707,6 +1164,7 @@ function setReserveProgress(reservedCount){
   const count = document.getElementById('reserveSpotsCount');
   if(fill) requestAnimationFrame(() => { fill.style.width = pct + '%'; });
   if(count) count.textContent = reserved + ' / ' + total;
+  reservedNow = reserved; renderSeats();
 }
 
 // Properly split CSV text into rows, ignoring line breaks that fall inside quoted fields.
@@ -742,8 +1200,10 @@ async function loadReservedCount(){
     if(!res.ok) throw new Error('Sheet fetch failed: ' + res.status);
     const text = await res.text();
     const rows = splitCsvRows(text);
-    const reserved = Math.max(rows.length - 1, 0); // minus header row
-    setReserveProgress(reserved);
+    const last = (rows[rows.length - 1] || '').replace(/"/g, '').trim();
+    // count query / count tab returns one number; otherwise count the response rows (minus header)
+    const isCount = /^\d+$/.test(last) && rows.length <= 2;
+    setReserveProgress(isCount ? parseInt(last, 10) : Math.max(rows.length - 1, 0));
   } catch(err){
     console.warn('Could not load live reservation count, using fallback:', err);
     setReserveProgress(SPOTS_RESERVED);
@@ -751,7 +1211,7 @@ async function loadReservedCount(){
 }
 
 (function(){
-  loadReservedCount();
+  loadReservedCount(); setInterval(loadReservedCount, 60000);
 
   const reserveBtn = document.getElementById('reserveBtn');
   if(reserveBtn){
