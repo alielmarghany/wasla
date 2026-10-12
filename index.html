@@ -2,10 +2,11 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Wasla | Order Managing App</title>
 <meta name="description" content="Wasla turns WhatsApp messages into organized orders with AI. 400 founding spots for Egyptian online sellers.">
-<meta name="theme-color" content="#ff1a1a">
+<meta name="theme-color" content="#ffffff">
+<script>try{var t=localStorage.getItem('wasla-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);if(t==='dark')document.querySelector('meta[name=theme-color]').setAttribute('content','#0c0c0c')}catch(e){document.documentElement.setAttribute('data-theme','light')}</script>
 <link rel="icon" type="image/png" href="Web Head Logo 2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -564,6 +565,131 @@
   .tier small{ display:block; font-weight:400; opacity:.5; margin-top:3px; font-size:10.5px; }
   .tier:hover{ border-color:#000; }
   .tier.on{ background:#000; color:#fff; border-color:#000; }
+
+  /* ===== MOBILE EXPERIENCE ===== */
+  *{ -webkit-tap-highlight-color:transparent; }
+  button,a,.seat{ touch-action:manipulation; }
+  .hero{ min-height:min(86svh,720px); }
+  .stage{ height:calc(100svh - 68px); }
+  .journey{ height:calc(var(--n) * 70svh + 20svh); }
+  .float-cta{ bottom:calc(14px + env(safe-area-inset-bottom,0px)); }
+  #calcR{ height:34px; margin:6px 0 4px; touch-action:pan-y;
+    background:linear-gradient(90deg,var(--red) var(--p,18%),rgba(0,0,0,.18) var(--p,18%)) center/100% 2px no-repeat; }
+  #calcR::-webkit-slider-thumb{ width:26px; height:26px; }
+  #calcR::-moz-range-thumb{ width:26px; height:26px; }
+  @media (hover:none){
+    .seat:hover{ transform:none; background:none; }
+    .seat.res:hover{ background:var(--red); }
+    .seat:active{ background:#fff; }
+    .seat::after{ display:none; }
+    .tier:hover{ border-color:var(--line-on-white); }
+    .tier.on:hover{ border-color:#000; }
+  }
+  @media (max-width:640px){
+    .nav-inner{ height:68px; }
+    .wordmark{ font-size:19px; }
+    .lang-toggle{ min-height:40px; padding:8px 14px; }
+    .btn{ min-height:46px; justify-content:center; }
+    .hero{ min-height:min(82svh,640px); }
+    .hero-inner{ padding-top:24px; padding-bottom:72px; }
+    .hero .sub{ font-size:15px; margin-bottom:30px; }
+    .hero-actions{ flex-direction:column; align-items:stretch; gap:12px; }
+    .hero-actions .pill{ justify-content:center; padding:14px; }
+    .sub-text,.process .sub-text{ font-size:13.5px; }
+    .p-steps div{ font-size:12.5px; }
+    .chat-area{ height:360px; }
+    .msg{ font-size:13.5px; }
+    .orow{ font-size:13.5px; }
+    .about-intro p.body{ font-size:14px; }
+    .j-num{ font-size:76px; }
+    .j-card h3{ font-size:26px; }
+    .j-card p{ font-size:14.5px; }
+    .j-hint{ font-size:11px; }
+    .mod li,.calc-feats li{ font-size:13px; }
+    .modgrid{ gap:32px; }
+    .calc-card,.calc-time{ padding:26px 22px; }
+    .calc-q b{ font-size:34px; }
+    .calc-big b{ font-size:44px; }
+    .tier{ min-height:48px; }
+    .seats .seat-map{ max-width:none; margin:0 0 28px; gap:3px; }
+    .seats-cta{ flex-direction:column; align-items:stretch; gap:20px; }
+    .seats-cta .btn{ width:100%; }
+    .float-cta{ width:calc(100% - 28px); justify-content:center; font-size:12px; }
+    .modal-overlay{ padding:0; align-items:flex-end; }
+    .modal-card{ max-width:none; height:94vh; height:94dvh; max-height:94dvh; }
+    .modal-card iframe{ min-height:0; }
+    .modal-close{ padding:10px; font-size:18px; }
+    footer{ padding:36px 0 calc(36px + env(safe-area-inset-bottom,0px)); }
+  }
+  @media (max-width:480px){
+    .nav-actions > .btn{ display:none; }
+  }
+
+
+  /* one reserve button at a time */
+  .hero-actions{ align-items:center; gap:22px; }
+  .pill{ border:none; padding:0; margin:0; opacity:.6; font-size:11px; pointer-events:none; }
+  .pill:hover{ background:none; color:inherit; }
+  .nav-actions > .btn{ transition:opacity .3s, transform .3s; }
+  .nav:not(.cta-on) .nav-actions > .btn{ opacity:0; transform:translateY(-6px); pointer-events:none; }
+  @media (max-width:640px){ .hero-actions .pill{ padding:0; margin-top:4px; } }
+
+  /* ===== CALM + CENTERED ===== */
+  .rv{ transform:translateY(14px); transition-duration:.6s; }
+  .nav-inner{ display:grid; grid-template-columns:1fr auto 1fr; }
+  .brand{ justify-self:start; }
+  .nav-actions{ justify-self:end; }
+  @media (max-width:860px){ .nav-inner{ grid-template-columns:1fr auto; } }
+  .hero-inner{ max-width:880px; margin-inline:auto; text-align:center; }
+  .hero .eyebrow,.hero-actions{ justify-content:center; }
+  .hero .sub{ margin-inline:auto; }
+  .process .wrap > .eyebrow,.product .wrap > .eyebrow{ justify-content:center; }
+  .process h2,.process .sub-text,.product h2,.product .sub-text{ margin-inline:auto; text-align:center; }
+
+  /* theme toggle */
+  .theme-toggle{ background:transparent; border:1px solid var(--black); color:var(--black); width:44px; height:44px; padding:0; display:flex; align-items:center; justify-content:center; }
+  .theme-toggle:hover{ background:var(--black); color:var(--white); }
+  .theme-toggle svg{ width:16px; height:16px; }
+  .theme-toggle .sun{ display:none; }
+  html[data-theme="dark"] .theme-toggle .sun{ display:block; }
+  html[data-theme="dark"] .theme-toggle .moon{ display:none; }
+  @media (max-width:640px){ .theme-toggle{ width:40px; height:40px; } .nav-actions{ gap:10px; } }
+
+  /* ===== DARK MODE ===== */
+  html[data-theme="dark"]{ color-scheme:dark; --black:#efefeb; --white:#0c0c0c; --line-on-white:rgba(255,255,255,.14); --muted-on-white:rgba(255,255,255,.6); }
+  html[data-theme="dark"] .on-black{ --black:#181818; --white:#efefeb; --line-on-white:rgba(255,255,255,.16); }
+  html[data-theme="dark"] header.nav{ background:rgba(12,12,12,.9); }
+  html[data-theme="dark"] .process{ background:#111; }
+  html[data-theme="dark"] .p-steps div{ background:#151515; }
+  html[data-theme="dark"] .p-steps div.on{ background:#efefeb; color:#0c0c0c; }
+  html[data-theme="dark"] .phone,html[data-theme="dark"] .ocard{ background:#151515; }
+  html[data-theme="dark"] .phone-head{ background:#222; color:#efefeb; }
+  html[data-theme="dark"] .msg.c,html[data-theme="dark"] .typing.c{ background:#242424; }
+  html[data-theme="dark"] .msg.b,html[data-theme="dark"] .typing.b{ background:#efefeb; color:#0c0c0c; }
+  html[data-theme="dark"] .typing.b i{ background:#0c0c0c; }
+  html[data-theme="dark"] .typing.c i{ background:#efefeb; }
+  html[data-theme="dark"] .v.b{ border-color:#efefeb; }
+  html[data-theme="dark"] .v.unpaid{ border-color:var(--red); }
+  html[data-theme="dark"] .v.paid{ background:#efefeb; color:#0c0c0c; }
+  html[data-theme="dark"] .v.ship{ border-color:var(--red); }
+  html[data-theme="dark"] .track{ background:rgba(255,255,255,.12); }
+  html[data-theme="dark"] #calcR{ background:linear-gradient(90deg,var(--red) var(--p,18%),rgba(255,255,255,.22) var(--p,18%)) center/100% 2px no-repeat; }
+  html[data-theme="dark"] .calc-card{ background:#1b1b1b; color:#efefeb; border-color:rgba(255,255,255,.2); }
+  html[data-theme="dark"] .calc-card.alt{ background:transparent; color:#efefeb; border-color:#efefeb; }
+  html[data-theme="dark"] .calc-card.alt .calc-per{ color:#efefeb; }
+  html[data-theme="dark"] .btn-solid:hover,html[data-theme="dark"] .btn-outline-white:hover{ color:#fff; }
+  html[data-theme="dark"] .float-cta{ background:#efefeb; color:#0c0c0c; border-color:rgba(0,0,0,.15); }
+  html[data-theme="dark"] .float-cta b{ color:var(--red); }
+  html[data-theme="dark"] .modal-card{ background:#151515; }
+
+  .nav:not(.cta-on) .nav-actions > .btn{ display:none; }
+  .nav.cta-on .nav-actions > .btn{ animation:navIn .3s ease; }
+  @keyframes navIn{ from{ opacity:0; } to{ opacity:1; } }
+  .theme-toggle{ width:40px; height:40px; }
+  .lang-toggle{ height:40px; }
+  html[data-theme="dark"] .hero::before{ background-image:radial-gradient(rgba(255,255,255,.12) 1.2px,transparent 1.5px); }
+  html[data-theme="dark"] .scroll-hint{ background:rgba(255,255,255,.18); }
+  html[data-theme="dark"] .seat.res{ background:var(--red); border-color:var(--red); }
   .anchor-offset{ scroll-margin-top:80px; }
 </style>
 </head>
@@ -583,8 +709,9 @@
       <a href="#pricing" data-key="nav.pricing"></a>
     </nav>
     <div class="nav-actions">
-      <button class="lang-toggle" id="langToggle"><span class="dot small static"></span><span id="langToggleLabel">AR</span></button>
       <a class="btn btn-solid" href="#seats" data-key="nav.cta"></a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+      <button class="lang-toggle" id="langToggle"><span class="dot small static"></span><span id="langToggleLabel">AR</span></button>
     </div>
   </div>
 </header>
@@ -598,7 +725,7 @@
       <p class="sub" data-key="hero.sub"></p>
       <div class="hero-actions">
         <a class="btn btn-solid" href="#seats" data-key="hero.cta"></a>
-        <a class="pill" href="#seats"><span class="dot small"></span><span id="heroPill"></span></a>
+        <p class="pill"><span class="dot small"></span><span id="heroPill"></span></p>
       </div>
     </div>
     <div class="scroll-hint" aria-hidden="true"><span></span></div>
@@ -876,7 +1003,7 @@ const content = {
     "float.txt":"{n} spots left \u2014 reserve yours",
     "about.eyebrow":"About",
     "about.title":"Orders get lost in WhatsApp. Wasla fixes that.",
-    "about.body":"I'm Ali \u2014 I run a social media agency and build products. Most Egyptian sellers manage orders with Excel, starred messages and notebooks: tools never built for it. Wasla is built to fix that.",
+    "about.body":"Wasla is founded by Ali, who owns an agency that builds SaaS companies to find e-commerce solutions in Egypt. Most Egyptian sellers manage orders with Excel, starred messages and notebooks: tools never built for it. Wasla is built to fix that.",
     "about.t1":"Founder","about.t2":"Social media agency","about.t3":"Builder","about.t4":"AR / EN",
     "about.hint":"Keep scrolling to follow the journey \u2193",
     "st":{done:"Done",now:"Now",next:"Next"},
@@ -963,7 +1090,7 @@ const content = {
     "float.txt":"فاضل {n} مكان \u2014 احجز دلوقتي",
     "about.eyebrow":"عنّا",
     "about.title":"الأوردرات بتضيع في واتساب. وصلة بتحل ده.",
-    "about.body":"أنا علي \u2014 بدير ايجنسي سوشيال ميديا وبعمل منتجات. أغلب البائعين في مصر بيديروا أوردراتهم بإكسل ورسايل بنجمة ودفاتر، وأدوات مش معمولة لكده أصلًا. ووصلة اتبنت عشان تحل ده.",
+    "about.body":"وصلة اتأسست على إيد علي، صاحب ايجنسي بتبني شركات SaaS عشان تلاقي حلول للتجارة الإلكترونية في مصر. أغلب البائعين في مصر بيديروا أوردراتهم بإكسل ورسايل بنجمة ودفاتر، وأدوات مش معمولة لكده. ووصلة اتبنت عشان تحل ده.",
     "about.t1":"مؤسس","about.t2":"ايجنسي سوشيال ميديا","about.t3":"بيلدر","about.t4":"عربي / English",
     "about.hint":"كمّل سكرول عشان تمشي مع الرحلة \u2193",
     "st":{done:"تم",now:"دلوقتي",next:"الجاي"},
@@ -1036,6 +1163,7 @@ function onScroll(){
   $('jBar').style.width = (p * 100) + '%';
   const idx = Math.min(J_N - 1, Math.floor(p * J_N));
   if(idx !== jIdx) showStep(idx);
+  document.querySelector('.nav').classList.toggle('cta-on', scrollY > 500);
   $('floatCta').classList.toggle('show', scrollY > 600 && !inView($('seats')));
 }
 addEventListener('scroll', onScroll, { passive: true });
@@ -1093,6 +1221,14 @@ function runProcess(){
 }
 $('pReplay').addEventListener('click',runProcess);
 new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting && !pRun) runProcess(); }),{threshold:.3}).observe($('process'));
+
+// theme toggle
+$('themeToggle').addEventListener('click',()=>{
+  const r=document.documentElement, n=r.getAttribute('data-theme')==='dark'?'light':'dark';
+  r.setAttribute('data-theme',n);
+  try{ localStorage.setItem('wasla-theme',n); }catch(e){}
+  document.querySelector('meta[name=theme-color]').setAttribute('content',n==='dark'?'#0c0c0c':'#ffffff');
+});
 
 // pricing calculator
 const calcR=$('calcR');
